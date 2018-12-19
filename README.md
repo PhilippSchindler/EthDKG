@@ -1,7 +1,7 @@
 # EthDKG: An Ethereum-based Distributed Key Generation Protocol
 
-First, check out our corresponding 
-[paper](paper/Distributed\ Key\ Generation\ with\ Ethereum\ Smart\ Contracts.pdf),
+First, check out our corresponding
+[paper](paper/Distributed%20Key%20Generation%20with%20Ethereum%20Smart%20Contracts.pdf),
 to appear on Cryptology ePrint Archive (within the next few days).
 
 Then follow the instructions below to get familiar with the implementation.
