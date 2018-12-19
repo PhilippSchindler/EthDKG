@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+web3 = "*"
+py-solc = "*"
+py-ecc = "*"
+sympy = "*"
+pysha3 = "*"
+
+[dev-packages]
+rope = "*"
+pylint = "*"
+black = "*"
+flake8-mypy = "*"
+pytest = "*"
+flake8 = "*"
+numpy = "*"
+matplotlib = "*"
+jupyter = "*"
+
+[requires]
+python_version = "3.7"

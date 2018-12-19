@@ -1,0 +1,6 @@
+.vscode
+*.pyc
+*.pyo
+__pycache__/
+.pytest_cache/
+contracts/out
