@@ -151,6 +151,10 @@ def mine_blocks_until(predicate):
     while not predicate():
         mine_block()
 
+def blockNumber():
+    connect()
+    return w3.eth.blockNumber
+
 
 def run(func_or_funcs, args=()):
     """ executes the given functions in parallel and waits
