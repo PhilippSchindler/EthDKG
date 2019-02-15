@@ -226,6 +226,7 @@ def share_key():
             j += 1
     logging.info()
 
+    logging.info('sending key sharing transaction...')
     tx = node.share_key()
     log_tx(tx, 'key sharing transaction confirmed')
 
