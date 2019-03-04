@@ -2,7 +2,9 @@
 
 First, check out our corresponding
 [paper](paper/Distributed%20Key%20Generation%20with%20Ethereum%20Smart%20Contracts.pdf),
-to appear on Cryptology ePrint Archive (within the next few days).
+or the
+[slides](demo/slides-fc19.pdf)
+from our talk at CIW'19 workshops at the Financial Cryptography and Data Security 2019.
 
 Then follow the instructions below to get familiar with the implementation.
 
