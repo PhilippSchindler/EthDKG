@@ -1,8 +1,15 @@
-deploying DKG contract from Ethereum account 0x90af78e467296d96dbcc60d7f2c8f6a1b370941f
+INFO     compiling contract (ETHDKG.sol)...
+INFO     contract compiled successfully
+DEBUG    Compiler run successful. Artifact(s) can be found in directory /home/sp/r/ethdkg/contracts/bin.
 
-deployment transaction confirmed:
-    transaction hash: 0xe2781094a87fc9eb69a556540d7df96a5014ad82dfa11bffe65e30xe2781094a87fc9eb69a556540d7df96a5014ad82dfa11bffe65e34f8e1270f29
-    block number:     4619873
-    gas used:         3492253
+INFO     deploying contract...
+INFO     contract deployed
 
-contract deployed at: 0x64eB9cbc8AAc7723A7A94b178b7Ac4c18D7E6269
+INFO     contract address: 0x4603e9ee778a254a9cB6703Fc7779D81b5C0A540
+INFO     deployed by:      0xa4c0e7c451fc0980822986695a2be71cc24a5901
+INFO     transaction confirmed
+INFO     transaction hash: 0x99ae058ba471b234ce4a017c3f2fc08c8b3d6d77a4874bd8d35ba6adf84e3e2f
+INFO     block number:     6280084
+INFO     consumed gas:     3125613
+INFO     status:           OK (1)
+

@@ -4,22 +4,22 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-web3 = "*"
-py-solc = "*"
 py-ecc = "*"
 sympy = "*"
-pysha3 = "*"
+web3 = "*"
+py-solc = "*"
 
 [dev-packages]
-rope = "*"
-pylint = "*"
+mypy = "*"
 black = "*"
-flake8-mypy = "*"
+jupyter = "*"
 pytest = "*"
-flake8 = "*"
+pylint = "*"
 numpy = "*"
 matplotlib = "*"
-jupyter = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true

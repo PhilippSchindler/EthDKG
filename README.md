@@ -1,156 +1,124 @@
 # EthDKG: An Ethereum-based Distributed Key Generation Protocol
 
-First, check out our corresponding
-[paper](paper/Distributed%20Key%20Generation%20with%20Ethereum%20Smart%20Contracts.pdf),
-or the
-[slides](demo/slides-fc19.pdf)
-from our talk at the CIW'19 workshop at the Financial Cryptography and Data Security 2019 conference.
+This is the implantation of our corresponding research [paper](paper/ethdkg.pdf).
+To familiarize yourself with the implementation run the test cases or execute the protocol by following the instructions below.
 
-Then follow the instructions below to get familiar with the implementation.
+**Note**: An earlier version of the protocol was presented at the CIW'19 workshop at the Financial Cryptography and Data Security 2019 conference.
+The [documentation](fc19/), [paper](paper/Distributed%20Key%20Generation%20with%20Ethereum%20Smart%20Contracts.pdf) and [slides](fc19/demo/slides-fc19.pdf)
+from the previous version have been moved to the folder `./fc19`.
 
 ## Getting started
 
 We provided a docker container (see instruction below) for running the DKG protocol.
-The docker container can be used to execute the provided testcases as well as the CLI client application.
+The docker container can be used to execute the provided test cases as well as the CLI client application.
+Alternatively, the client application can be run directly on Linux operating systems, we describe both approaches below.
+Currently, both approaches are tested on **Linux only**.
 
 It is probably a good idea to read through our paper before going through the instructions below.
 
-### Running the Testcases
+### Setup using Docker
 
-In the `./client` folder we provide testcases for different scenarios.  
-To execute the testcases perform the following steps:
+In the following, we assume basic experience with Docker.
+To the setup the required dependencies using Docker follow the steps below:
 
-1. start the docker container (automatically starts a ganache-cli instance)  
-   `docker run -p 127.0.0.1:8545:8545 -it ethdkg`
-2. using an additional terminal window, connect to docker container to get a shell inside  
-   `docker ps`  
-   `docker exec -it <CONTAINER ID> /bin/bash`  
-3. within the container shell, switch to the `/ethdkg/client` directory
-4. run `pytest -p no:cacheprovider` to execute all tests, (be patient, some tests might take a while)
+1. Download or clone this repository.
+2. Switch to the `/scripts` folder of this repository.
+3. Execute the script `docker_init.sh`.
 
-### Running the DKG Client Application
+The script `docker_init.sh` first downloads the official docker container for `ganache-cli` and the Ethereum go client `geth`.
+Those are used for running an Ethereum testnet locally or connecting to the `ropsten` testnet.
+Second, it builds our `ethdkg` docker container, by installing the Python 3.7 as well as our Python package with dependencies (see `/requirements.txt`) inside the container.
 
-The CLI client application `dkg.py` is located in the `./client` folder.  
+### Setup without Docker
+
+1. Download or clone this repository.
+2. Ensure your have `Python 3.7` and `pip` installed on your system.
+3. Switch to the root folder of this repository.
+4. Install our `ethdkg` Python package using the command: `python3.7 -m pip install -e .`
+5. Follow the instructions on [https://www.npmjs.com/package/ganache-cli](https://www.npmjs.com/package/ganache-cli) to install `ganache-cli` locally (or use Ethereum's docker container instead).
+6. Optionally, install `ganache` as graphical alternative to `ganache-cli`.
+7. Optionally, install `geth` for testing the protocol on the actual Ethereum testnet or mainnet.
+
+## Running the Test Cases
+
+In the `./ethdkg` folder we provide automated tests for different scenarios, including simulations of adversarial behavior.
+To execute the test cases perform the following steps:
+
+1. Start a local `ganache` or `ganache-cli` instance with appropriate parameters.
+   We recommend that you use either of the pre-configured scripts
+   `/scripts/docker_ganache-cli_testing.sh` or `/scripts/ganache-cli_testing.sh`,
+   which both set the parameters for running the test cases correctly.
+
+2. Wait for `ganache` or `ganache-cli` to startup.
+
+3. Run the test cases using the command: `pytest` from the root or `/ethdkg` folder  of the repository.
+   If you using our docker container, you can use the script `/scripts/docker_ethdkg.sh` to start the docker container to obtain a shell with all required dependencies installed.
+
+The test cases should now execute.
+Depending on your system running all tests might take a while (approx. 5 min), a the DKG protocol is run multiple times, testing different scenarios and adversarial behavior.
+
+## Running the DKG Client Application
+
+The CLI client application `dkg.py` is located in the `/client` folder.  
 Try running `python3 dkg.py --help` for information more infos on the CLI interface.
 
-To test the DKG protocol with e.g. 4 clients perform the following steps:
+1. Start a local `ganache` or `ganache-cli` instance with appropriate parameters.
+   We recommend that you use either of the pre-configured scripts
+   `/scripts/docker_ganache-cli.sh` or `/scripts/ganache-cli.sh`,
+   which both set the appropriate parameters using for running the DKG protocol,
+   mining is enabled and interval is set to 15 seconds.
 
-1. open 6 terminal windows  
-   (1 for each client, 1 for ganache-cli, 1 for deployment & invoking further commands)
-2. in terminal 1, start the docker container to get a shell  
-   `docker run -p 127.0.0.1:8545:8545 -it ethdkg /bin/bash`
-3. in terminal 2-6, connect to the docker container  
-   `docker ps`  
-   `docker exec -it <CONTAINER ID> /bin/bash`
-4. in terminal 1, start the ganache instance
-   (ensure that that ganache has at least as many accounts as the number of participants in the DKG protocol, the default of 10 works for up to 10 clients)  
-   `ganache-cli --host 0.0.0.0 --verbose`
-5. in terminal 2, deploy the DKG smart contract  
-   `python3 dkg.py deploy`
-6. in terminals 3, 4 and 5, start a DKG client using ethereum account 0, 1 and 2 respecitively;  
-   use the contract address you get from step 5 as common adress  
-   `python3 dkg.py run 0 <contract address>`  
-   `python3 dkg.py run 1 <contract address>`  
-   `python3 dkg.py run 2 <contract address>`  
-7. in terminal 6, repeat step 6 for ethereum account 3 or test the handling of failures and dispute using either of the following command to simulate adversarial behavior:
-   * Abort the protocol after registration  
-   `python3 dkg.py run 3 <contract address> --abort-after-registration`
-   * Send invalid shares to node with id 1  
-   `python3 dkg.py run 3 <contract address> --send-invalid-shares 1`  
-   (you can also specify more that one id)
+2. Wait for `ganache` or `ganache-cli` to startup.
+
+3. Deploy the DKG contract using the command `python3.7 -m ethdkg deploy`.
+   As default the account with index 0 is used for deployment.
+
+4. Run the DKG clients using the commands  
+   `python3.7 -m ethdkg run CONTRACT_ADDRESS --account-index 1`,  
+   `python3.7 -m ethdkg run CONTRACT_ADDRESS --account-index 2`, ...  
+   `python3.7 -m ethdkg run CONTRACT_ADDRESS --account-index n`,  
+   in separate shells.
+   Again, you can use the script `/scripts/docker_ethdkg.sh` to start the docker container to obtain a shell with all required dependencies installed, and issue the command within the container.
 
 Now the DKG clients automatically execute the protocol.
-When the protocol phase changes (e.g. from *registration* to *key sharing*) the DKG client application automatically waits for the next phase to start.
+When the protocol phase changes the DKG client application automatically waits for the next phase to start.
+If you use `ganache` or `ganache-cli` locally you can use you our utilities to speed up the mining process and reduce the waiting time.
+To immediately mine e.g. 10 new blocks you can use the helper function as follows:
+`python3.7 -c 'from ethdkg import utils; utils.mine_blocks(10)'`
 
-To continue operation, one needs to tell ganache-cli to mine blocks -- in the default configuration new blocks are only produced when when a transaction is received.
-To instruct ganache to mine e.g. 10 new blocks you can use the helper function we provide in the `utils.py` package:  
-`python3 -c 'import utils; utils.mine_blocks(10)'`
+To run the protocol in the Ethereum testnet or mainnet use
+`geth` instead of `ganache-cli`.
+Again we provide helper script for running `geth` in the `/scripts`.
+Additionally, you need to setup and unlock the accounts used for deployment and running the node(s).
+Take a look at the [/evaluation](evaluation/) folder for an documented example of the protocol execution in the Ethereum testnet, which also includes a simulation of adversarial behavior.
 
-As an alternative (in step 4.) you can also start ganache-cli such that it automatically produces a block e.g. every 15 seconds using the following command:  
-`ganache-cli --host 0.0.0.0 --blockTime 15 --verbose`  
-You need to make sure that you quickly start the client application after deployment of the contract.
-Registration is only possible within time window of 20 blocks after the contract is deployed.
-This setting be adjusted in the DKG contract itself `./contracts/DKG.sol` and is set relative short to enable faster testing.
+## Helpers
 
-## Docker Basics
+When you modify or experiment with our implementation you might find your helper utilities used within the implementation useful.
+To use them you can run a interactive Python shell `python3.7 -i` and import the utilities using `from ethdkg import utils`.
 
-### Installation
+The you can for example issue the command `utils.deploy_contract('ETHDKG')` to deploy the contract `/contracts/ETHDKG.sol`.
+Or you can use the command `utils.mine_block()` to instruct `ganache` to immediately mine a new block, a feature we use extensively to speed up our automated tests.
+Our utils, automatically handle the connection to the local `ganache` or `geth` client and can also be used to interface with deployed contracts (see e.g. the `utils.get_contract` function).
 
-Follow the instruction on <https://docs.docker.com/install/linux/docker-ce/ubuntu/> to install docker.
+## Security Notice
 
-### Build Container
+This software is provided "as is", without warranty of any kind, express or implied (see [MIT license](LICENSE)).
+The security of the software critically depends on the choice of various parameters and the correct configuration of the smart contract.
+The defaults we provide enable simple testing and development but are not suitable for a production deployment.
+Fell free to contact us if you have additional questions.
 
-From root folder of reposity run:  
-`docker build -t ethdkg .`
+## List of Dependencies
 
-### Run Container
+In the following, we list all dependencies required to run our protocol client with the version number we used.
+The required python packages are specified in the file `/requirements.txt`.
 
-Start the container and run the Ethereum ganache-cli node:  `docker run -p 127.0.0.1:8545:8545 -it ethdkg`
-
-Start the container without ganache-cli:  
-`docker run -p 127.0.0.1:8545:8545 -it ethdkg /bin/bash`
-
-### Connect to Container
-
-List all containers:  
-`docker ps`  
-
-Connect to running container to get a shell:  
-`docker exec -it <CONTAINER ID> /bin/bash`
-
-### Delete Container
-
-`docker rmi ethdkg -f`
-
-## Ganache Basics
-
-Ganache (more specifically ganache-cli) is a CLI frontend to a locally running Ethereum node used for development purpose only.
-Ganache is preinstalled in the provided docker image.
-
-To start ganache-cli manually:  
-`ganache-cli --host 0.0.0.0`  (new block for each transaction)  
-`ganache-cli --host 0.0.0.0 --blockTime 15 --verbose --accounts 100`  (new block every 15 seconds)  
-
-Mine a new block (from local machine or docker):  
-`curl -X POST --data '{"jsonrpc":"2.0","method":"evm_mine","params":[],"id":1}' localhost:8545`
-
-Alternatively one can you our helper package `utils.py` to mine e.g. 10 blocks:  
-`python3 -c 'import utils; utils.mine_blocks(10)'`
-
-## Development
-
-### Using pipenv
-
-Corrently the `web3` package has a dependency issue when used with `pipenv`.
-Therefore installation of all dependencies with `pipenv` requires the following workarround:
-
-`rm -rf Pipfile.lock && rm -rf ~/.cache/pip && rm -rf ~/.cache/pipenv && pipenv install --skip-lock web3 && pipenv lock --pre --clear`
-
-### Solidity compiler
-
-The python bindings for the solidity compiler are currently not compatible with `solc` in version 0.5.
-
-Workaround:
-Just stick to version 0.4.25 from <https://github.com/ethereum/solidity/releases> for now.  
-Extract and copy to /usr/bin/solc under Ubuntu.
-
-## Testing the protocol in the Ropsten Testwork
-
-Use e.g. <https://faucet.ropsten.be/> to obtain testnet Ether.
-
-Create some new accouts with geth and supply them with funds:  
-`geth --testnet account new` or  
-`geth --testnet account import <path_to_private_key_file>`  
-`geth --testnet account import <(echo private_key_ without_0x)`
-
-Follow <https://github.com/ethereum/go-ethereum/wiki/Installing-Geth> to install geth.
-
-Starting a local geth node:  
-`geth --testnet --syncmode light --rpc`
-
-Starting a local geth node and unlock the account(s):
-`geth --testnet --syncmode light --rpc --unlock 0,1,2,3,4,5,6,7,8,9 --password <(echo -n)`
+* Python (3.7)
+* Pip (18.1)
+* Solidity compiler `solc` (0.5.11+commit.22be8592.Linux.g++), provided in the `/bin` folder
+* Ganache (2.1.0)
+* Ganache CLI (6.5.1)
 
 ## Acknowledgements
 
-I would like to express my very great appreciation to my co-authors Aljosha Judmayer and Nicholas Stifter for the excellent collabortion and support throughout the design and implementation of this project, a variety of critical discussions, and their valuable contributions to the paper.
+I would like to express my very great appreciation to my co-authors Aljosha Judmayer and Nicholas Stifter for the excellent collaboration and support throughout the design and implementation of this project, a variety of critical discussions, and their valuable contributions to the paper.

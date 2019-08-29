@@ -4,3 +4,8 @@
 __pycache__/
 .pytest_cache/
 contracts/out
+.ipynb_checkpoints/
+.mypy_cache/
+.mypy_cache/*
+logs/
+ethdkg.egg-info/

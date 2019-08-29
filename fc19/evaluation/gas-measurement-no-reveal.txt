@@ -1,0 +1,1116 @@
+ipython -c 'from ethdkg.eval_performance_metrics import run, run_all; run_all(stop_max=True)'
+
+
+================================================================================
+RUNNING EVALUATION FOR N=8
+
+contract deployed at: 0xE08D659AD3EeCf933934469fbB0a0237CA6E9DB1
+initializing nodes (8/8)...
+running registration (8/8)...
+
+gas consumption for registration transaction (n=8)
+min: 92457, avg: 94380, max: 107521, total: 755040
+Counter({92521: 5, 92457: 2, 107521: 1})
+[107521, 92457, 92457, 92521, 92521, 92521, 92521, 92521]
+
+running setup (8/8)...
+running share distribution (8/8)...
+
+gas consumption for sharing transaction (n=8)
+min: 128384, avg: 128560, max: 128640, total: 1028480
+Counter({128576: 4, 128640: 2, 128384: 1, 128512: 1})
+[128576, 128640, 128576, 128384, 128640, 128512, 128576, 128576]
+
+processing incomming shares (8/8)...
+
+stopping adversary node which sent invalid shares, 7 nodes remaining
+
+running disputes (7/7)...
+
+gas consumption for dispute transaction (n=7)
+min: 69062, avg: 237211, max: 405359, total: 474421
+Counter({405359: 1, 69062: 1})
+[405359, 69062]
+
+processing incomming disputes (1/1)...
+
+stopping adversary node(s) which do not publish their key shares,  5 nodes remaining
+
+running key share submission (5/5)...
+
+gas consumption for key share submission (n=5)
+min: 517578, avg: 517719, max: 517770, total: 2588594
+Counter({517770: 3, 517578: 1, 517706: 1})
+[517770, 517770, 517578, 517706, 517770]
+
+processing incomming key share submission (5/5)...
+running key share recovery (5/5)...
+
+gas consumption for key share recovery (n=5)
+min: 51852, avg: 51955, max: 51980, total: 259772
+Counter({51980: 4, 51852: 1})
+[51980, 51980, 51852, 51980, 51980]
+
+loading and executing eventual key share recovery...
+
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+
+gas costs for submission of master key:  395641
+gas costs for submission of master key:  30913
+================================================================================
+
+defaultdict(<class 'list'>, {'registration': [107521], 'share distribution': [128640], 'dispute': [405359], 'dispute, duplicate': [69062], 'key share submission': [517770], 'key share recovery': [51980], 'recovered key share submission': [517706, 517706], 'recovered key share submission, duplicate': [41245, 41245], 'master key submission': [395641], 'master key submission, duplicate': [30913]})
+
+================================================================================
+
+
+
+================================================================================
+RUNNING EVALUATION FOR N=16
+
+contract deployed at: 0x9b98182801255c52A95De852dF1261f437F1635D
+initializing nodes (16/16)...
+running registration (16/16)...
+
+gas consumption for registration transaction (n=16)
+min: 92457, avg: 93455, max: 107521, total: 1495272
+Counter({92521: 14, 107521: 1, 92457: 1})
+[107521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521]
+
+running setup (16/16)...
+running share distribution (16/16)...
+
+gas consumption for sharing transaction (n=16)
+min: 172201, avg: 172477, max: 172649, total: 2759632
+Counter({172521: 7, 172585: 3, 172329: 2, 172649: 1, 172457: 1, 172201: 1, 172265: 1})
+[172649, 172521, 172457, 172201, 172521, 172521, 172265, 172329, 172521, 172585, 172585, 172521, 172521, 172585, 172521, 172329]
+
+processing incomming shares (16/16)...
+
+stopping adversary node which sent invalid shares, 15 nodes remaining
+
+running disputes (15/15)...
+
+gas consumption for dispute transaction (n=15)
+min: 104341, avg: 359065, max: 613788, total: 718129
+Counter({613788: 1, 104341: 1})
+[613788, 104341]
+
+processing incomming disputes (1/1)...
+
+stopping adversary node(s) which do not publish their key shares,  9 nodes remaining
+
+running key share submission (9/9)...
+
+gas consumption for key share submission (n=9)
+min: 517578, avg: 517699, max: 517770, total: 4659290
+Counter({517770: 4, 517706: 2, 517578: 2, 517642: 1})
+[517770, 517770, 517706, 517642, 517770, 517770, 517706, 517578, 517578]
+
+processing incomming key share submission (9/9)...
+running key share recovery (9/9)...
+
+gas consumption for key share recovery (n=9)
+min: 101000, avg: 101256, max: 101512, total: 911304
+Counter({101064: 2, 101448: 2, 101128: 1, 101384: 1, 101000: 1, 101256: 1, 101512: 1})
+[101064, 101128, 101064, 101384, 101000, 101448, 101256, 101448, 101512]
+
+loading and executing eventual key share recovery...
+
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+
+gas costs for submission of master key:  421332
+gas costs for submission of master key:  30849
+================================================================================
+
+defaultdict(<class 'list'>, {'registration': [107521, 107521], 'share distribution': [128640, 172649], 'dispute': [405359, 613788], 'dispute, duplicate': [69062, 104341], 'key share submission': [517770, 517770], 'key share recovery': [51980, 101512], 'recovered key share submission': [517706, 517706, 517706, 517578, 517706, 517770, 517770, 517706], 'recovered key share submission, duplicate': [41245, 41245, 41181, 41181, 41309, 41309, 41309, 41245], 'master key submission': [395641, 421332], 'master key submission, duplicate': [30913, 30849]})
+
+================================================================================
+
+
+
+================================================================================
+RUNNING EVALUATION FOR N=32
+
+contract deployed at: 0x1dcce54483248d30307e1cf8Db67Ccc2526bB456
+initializing nodes (32/32)...
+running registration (32/32)...
+
+gas consumption for registration transaction (n=32)
+min: 92393, avg: 92976, max: 107521, total: 2975224
+Counter({92521: 25, 92457: 5, 107521: 1, 92393: 1})
+[107521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92457, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92393, 92521]
+
+running setup (32/32)...
+running share distribution (32/32)...
+
+gas consumption for sharing transaction (n=32)
+min: 259932, avg: 260414, max: 260828, total: 8333248
+Counter({260380: 6, 260444: 5, 260572: 5, 260252: 5, 260508: 3, 260316: 2, 260700: 2, 259932: 1, 260828: 1, 260124: 1, 260188: 1})
+[260380, 260380, 260380, 259932, 260444, 260380, 260572, 260508, 260380, 260380, 260444, 260572, 260316, 260444, 260700, 260828, 260252, 260124, 260444, 260700, 260444, 260572, 260252, 260252, 260316, 260252, 260572, 260508, 260252, 260188, 260572, 260508]
+
+processing incomming shares (32/32)...
+
+stopping adversary node which sent invalid shares, 31 nodes remaining
+
+running disputes (31/31)...
+
+gas consumption for dispute transaction (n=31)
+min: 175480, avg: 603485, max: 1031489, total: 1206969
+Counter({1031489: 1, 175480: 1})
+[1031489, 175480]
+
+processing incomming disputes (1/1)...
+
+stopping adversary node(s) which do not publish their key shares,  17 nodes remaining
+
+running key share submission (17/17)...
+
+gas consumption for key share submission (n=17)
+min: 517514, avg: 517703, max: 517770, total: 8800938
+Counter({517770: 8, 517706: 4, 517642: 2, 517578: 2, 517514: 1})
+[517642, 517514, 517770, 517578, 517642, 517770, 517706, 517770, 517770, 517578, 517770, 517770, 517706, 517770, 517770, 517706, 517706]
+
+processing incomming key share submission (17/17)...
+running key share recovery (17/17)...
+
+gas consumption for key share recovery (n=17)
+min: 199770, avg: 200060, max: 200410, total: 3401018
+Counter({200026: 4, 199962: 4, 200090: 2, 200154: 2, 200410: 1, 200218: 1, 199770: 1, 200346: 1, 199834: 1})
+[200026, 200090, 199962, 200154, 200026, 200154, 200090, 199962, 200410, 200218, 199770, 200026, 199962, 200346, 199962, 200026, 199834]
+
+loading and executing eventual key share recovery...
+
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+
+gas costs for submission of master key:  472891
+gas costs for submission of master key:  30849
+================================================================================
+
+defaultdict(<class 'list'>, {'registration': [107521, 107521, 107521], 'share distribution': [128640, 172649, 260828], 'dispute': [405359, 613788, 1031489], 'dispute, duplicate': [69062, 104341, 175480], 'key share submission': [517770, 517770, 517770], 'key share recovery': [51980, 101512, 200410], 'recovered key share submission': [517706, 517706, 517706, 517578, 517706, 517770, 517770, 517706, 517706, 517642, 517642, 517578, 517706, 517706, 517578, 517770, 517706, 517642, 517770, 517770, 517770, 517706], 'recovered key share submission, duplicate': [41245, 41245, 41181, 41181, 41309, 41309, 41309, 41245, 41245, 41245, 41117, 41053, 41245, 41181, 41117, 41309, 41245, 41245, 41245, 41309, 41309, 41245], 'master key submission': [395641, 421332, 472891], 'master key submission, duplicate': [30913, 30849, 30849]})
+
+================================================================================
+
+
+
+================================================================================
+RUNNING EVALUATION FOR N=64
+
+contract deployed at: 0xeCb3C2117eBff7271e9BA0e1BDa8581423E9E2a3
+initializing nodes (64/64)...
+running registration (64/64)...
+
+gas consumption for registration transaction (n=64)
+min: 92393, avg: 92737, max: 107521, total: 5935128
+Counter({92521: 46, 92457: 15, 92393: 2, 107521: 1})
+[107521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92521, 92521, 92521, 92457, 92393, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92457, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92393, 92457, 92521, 92457, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92457, 92521, 92521]
+
+running setup (64/64)...
+running share distribution (64/64)...
+
+gas consumption for sharing transaction (n=64)
+min: 435713, avg: 436335, max: 436993, total: 27925440
+Counter({436289: 9, 436161: 7, 436225: 6, 436097: 6, 436481: 5, 436609: 4, 436417: 4, 436737: 4, 436801: 3, 435969: 3, 436545: 3, 435777: 2, 436353: 2, 436033: 1, 436993: 1, 436673: 1, 435713: 1, 436865: 1, 435841: 1})
+[436289, 436609, 436289, 436417, 436801, 436417, 435777, 436225, 436289, 435969, 436033, 436545, 436609, 436545, 436481, 436161, 436353, 436737, 436993, 436609, 436481, 436737, 436161, 436097, 436801, 436673, 436161, 436609, 435969, 436225, 436097, 436161, 436225, 436481, 436161, 436097, 435713, 436225, 436481, 436097, 436289, 436097, 436417, 436289, 436417, 436161, 436225, 436545, 436737, 436225, 436161, 436097, 436865, 436289, 435777, 436289, 436289, 435969, 436481, 436737, 435841, 436801, 436289, 436353]
+
+processing incomming shares (64/64)...
+
+stopping adversary node which sent invalid shares, 63 nodes remaining
+
+running disputes (63/63)...
+
+gas consumption for dispute transaction (n=63)
+min: 317265, avg: 1091940, max: 1866615, total: 2183880
+Counter({1866615: 1, 317265: 1})
+[1866615, 317265]
+
+processing incomming disputes (1/1)...
+
+stopping adversary node(s) which do not publish their key shares,  33 nodes remaining
+
+running key share submission (33/33)...
+
+gas consumption for key share submission (n=33)
+min: 517578, avg: 517685, max: 517770, total: 17083594
+Counter({517706: 13, 517642: 11, 517770: 6, 517578: 3})
+[517642, 517642, 517770, 517706, 517706, 517706, 517770, 517770, 517642, 517706, 517706, 517642, 517770, 517578, 517642, 517770, 517642, 517642, 517642, 517706, 517770, 517642, 517642, 517706, 517706, 517642, 517706, 517706, 517578, 517578, 517706, 517706, 517706]
+
+processing incomming key share submission (33/33)...
+running key share recovery (33/33)...
+
+gas consumption for key share recovery (n=33)
+min: 396651, avg: 397780, max: 398379, total: 13126731
+Counter({397867: 5, 398059: 4, 397803: 3, 397483: 3, 397995: 3, 397611: 2, 397547: 2, 397675: 2, 397931: 2, 397419: 1, 398379: 1, 398315: 1, 397739: 1, 397163: 1, 398123: 1, 396651: 1})
+[397803, 397483, 397611, 398059, 397547, 397995, 397803, 397547, 397867, 398059, 397995, 397419, 398379, 397675, 397675, 397931, 398059, 397867, 398059, 397931, 397867, 398315, 397483, 397995, 397739, 397611, 397163, 397803, 398123, 397867, 396651, 397483, 397867]
+
+loading and executing eventual key share recovery...
+
+gas costs for submission of recovered key share:  517514
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+
+gas costs for submission of master key:  576200
+gas costs for submission of master key:  30849
+================================================================================
+
+defaultdict(<class 'list'>, {'registration': [107521, 107521, 107521, 107521], 'share distribution': [128640, 172649, 260828, 436993], 'dispute': [405359, 613788, 1031489, 1866615], 'dispute, duplicate': [69062, 104341, 175480, 317265], 'key share submission': [517770, 517770, 517770, 517770], 'key share recovery': [51980, 101512, 200410, 398379], 'recovered key share submission': [517706, 517706, 517706, 517578, 517706, 517770, 517770, 517706, 517706, 517642, 517642, 517578, 517706, 517706, 517578, 517770, 517706, 517642, 517770, 517770, 517770, 517706, 517514, 517642, 517578, 517706, 517770, 517706, 517706, 517642, 517706, 517642, 517642, 517770, 517706, 517642, 517770, 517706, 517706, 517770, 517706, 517770, 517706, 517770, 517706, 517770, 517770, 517706, 517770, 517706, 517706, 517642], 'recovered key share submission, duplicate': [41245, 41245, 41181, 41181, 41309, 41309, 41309, 41245, 41245, 41245, 41117, 41053, 41245, 41181, 41117, 41309, 41245, 41245, 41245, 41309, 41309, 41245, 41053, 41117, 41117, 41245, 41309, 41181, 41245, 41181, 41245, 41181, 41053, 41117, 41309, 41245, 41309, 41309, 41245, 41245, 41245, 41309, 41245, 41309, 41245, 41309, 41245, 41181, 41309, 41245, 41245, 41309], 'master key submission': [395641, 421332, 472891, 576200], 'master key submission, duplicate': [30913, 30849, 30849, 30849]})
+
+================================================================================
+
+
+
+================================================================================
+RUNNING EVALUATION FOR N=128
+
+contract deployed at: 0xf66bBd50C3C7918C1d0240fb1339F08B68b70c79
+initializing nodes (128/128)...
+running registration (128/128)...
+
+gas consumption for registration transaction (n=128)
+min: 92329, avg: 92616, max: 107521, total: 11854744
+Counter({92521: 89, 92457: 32, 92393: 4, 92329: 2, 107521: 1})
+[107521, 92457, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92329, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92329, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92393, 92521, 92521, 92457, 92521, 92521, 92393, 92457, 92457, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92457, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92457, 92457, 92521, 92521, 92457, 92521, 92457, 92521, 92457, 92521, 92457, 92457, 92521, 92521, 92393, 92521, 92457, 92521, 92521, 92457, 92457, 92457, 92521, 92457, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92393, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521]
+
+running setup (128/128)...
+running share distribution (128/128)...
+
+gas consumption for sharing transaction (n=128)
+min: 787846, avg: 788773, max: 789638, total: 100962944
+Counter({788870: 12, 788806: 12, 788486: 12, 789062: 9, 788742: 9, 788550: 8, 788614: 6, 788998: 6, 788934: 5, 789318: 5, 788358: 5, 788678: 4, 789190: 4, 788166: 4, 789446: 4, 788422: 3, 789254: 3, 789126: 3, 788294: 3, 788230: 2, 788038: 2, 789510: 2, 789382: 1, 788102: 1, 787910: 1, 789638: 1, 787846: 1})
+[788230, 788038, 788870, 788806, 788486, 788550, 788870, 788806, 788614, 788422, 789382, 788486, 788806, 789062, 788934, 788486, 789318, 788678, 789190, 789062, 788806, 788486, 788166, 788486, 789254, 788870, 788358, 788166, 789510, 788806, 788550, 789126, 788742, 788678, 789062, 788998, 789062, 789190, 788806, 788742, 788294, 788102, 788998, 789318, 788934, 788422, 788678, 788614, 788998, 788870, 788486, 788870, 788934, 788742, 789062, 788614, 788230, 788486, 788358, 787910, 788486, 789190, 788358, 789062, 789318, 788870, 789062, 788870, 788742, 789446, 789254, 788806, 788870, 788550, 788742, 788742, 789446, 788614, 788294, 789318, 788870, 788870, 788294, 788422, 788166, 788742, 788934, 788550, 789318, 788614, 789062, 788614, 788806, 788806, 788870, 788806, 788550, 788742, 788038, 788998, 789254, 788678, 788742, 788166, 788358, 789446, 789446, 788998, 788486, 788550, 788486, 789126, 788358, 789510, 789190, 788486, 788806, 788550, 789638, 789062, 788550, 788870, 789126, 788806, 788486, 787846, 788998, 788934]
+
+processing incomming shares (128/128)...
+
+stopping adversary node which sent invalid shares, 127 nodes remaining
+
+running disputes (127/127)...
+
+gas consumption for dispute transaction (n=127)
+min: 601293, avg: 2069808, max: 3538322, total: 4139615
+Counter({3538322: 1, 601293: 1})
+[3538322, 601293]
+
+processing incomming disputes (1/1)...
+
+stopping adversary node(s) which do not publish their key shares,  65 nodes remaining
+
+running key share submission (65/65)...
+
+gas consumption for key share submission (n=65)
+min: 517514, avg: 517698, max: 517770, total: 33650314
+Counter({517706: 22, 517770: 20, 517642: 18, 517578: 4, 517514: 1})
+[517770, 517770, 517642, 517642, 517706, 517706, 517770, 517706, 517770, 517578, 517770, 517642, 517642, 517578, 517514, 517706, 517642, 517642, 517706, 517642, 517770, 517706, 517706, 517770, 517770, 517706, 517770, 517706, 517770, 517770, 517642, 517706, 517706, 517770, 517770, 517706, 517706, 517770, 517706, 517770, 517770, 517706, 517642, 517770, 517706, 517642, 517706, 517642, 517578, 517706, 517706, 517578, 517642, 517642, 517770, 517642, 517642, 517770, 517642, 517770, 517706, 517706, 517642, 517642, 517706]
+
+processing incomming key share submission (65/65)...
+running key share recovery (65/65)...
+
+gas consumption for key share recovery (n=65)
+min: 792764, avg: 793494, max: 794364, total: 51577084
+Counter({793404: 7, 793276: 6, 793532: 6, 793212: 5, 793596: 5, 793468: 5, 793724: 5, 793788: 3, 793148: 3, 793916: 3, 792764: 2, 792956: 2, 794044: 2, 793980: 2, 793020: 2, 793852: 2, 794364: 1, 793340: 1, 794172: 1, 793084: 1, 793660: 1})
+[794364, 793404, 793212, 793788, 792764, 793404, 793404, 792956, 793148, 793404, 793596, 793596, 793916, 793276, 793468, 792956, 793724, 793596, 793724, 793724, 793532, 793276, 793404, 793724, 793276, 793468, 793532, 794044, 793340, 793276, 793980, 793020, 793148, 793852, 793212, 793532, 794172, 793468, 793212, 793788, 793532, 793596, 792764, 793212, 793276, 793916, 793404, 793724, 793148, 793788, 793468, 793532, 793852, 794044, 793404, 793980, 793020, 793276, 793084, 793596, 793212, 793532, 793660, 793468, 793916]
+
+loading and executing eventual key share recovery...
+
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517514
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517514
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517386
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517514
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+
+gas costs for submission of master key:  783586
+gas costs for submission of master key:  30849
+================================================================================
+
+defaultdict(<class 'list'>, {'registration': [107521, 107521, 107521, 107521, 107521], 'share distribution': [128640, 172649, 260828, 436993, 789638], 'dispute': [405359, 613788, 1031489, 1866615, 3538322], 'dispute, duplicate': [69062, 104341, 175480, 317265, 601293], 'key share submission': [517770, 517770, 517770, 517770, 517770], 'key share recovery': [51980, 101512, 200410, 398379, 794364], 'recovered key share submission': [517706, 517706, 517706, 517578, 517706, 517770, 517770, 517706, 517706, 517642, 517642, 517578, 517706, 517706, 517578, 517770, 517706, 517642, 517770, 517770, 517770, 517706, 517514, 517642, 517578, 517706, 517770, 517706, 517706, 517642, 517706, 517642, 517642, 517770, 517706, 517642, 517770, 517706, 517706, 517770, 517706, 517770, 517706, 517770, 517706, 517770, 517770, 517706, 517770, 517706, 517706, 517642, 517642, 517706, 517770, 517578, 517706, 517642, 517706, 517706, 517578, 517578, 517770, 517642, 517770, 517578, 517706, 517706, 517514, 517706, 517770, 517706, 517770, 517770, 517642, 517770, 517770, 517642, 517642, 517706, 517706, 517706, 517578, 517642, 517706, 517770, 517770, 517642, 517706, 517642, 517706, 517514, 517706, 517706, 517642, 517770, 517578, 517770, 517770, 517386, 517706, 517706, 517706, 517706, 517770, 517706, 517642, 517706, 517706, 517706, 517514, 517706, 517706, 517770], 'recovered key share submission, duplicate': [41245, 41245, 41181, 41181, 41309, 41309, 41309, 41245, 41245, 41245, 41117, 41053, 41245, 41181, 41117, 41309, 41245, 41245, 41245, 41309, 41309, 41245, 41053, 41117, 41117, 41245, 41309, 41181, 41245, 41181, 41245, 41181, 41053, 41117, 41309, 41245, 41309, 41309, 41245, 41245, 41245, 41309, 41245, 41309, 41245, 41309, 41245, 41181, 41309, 41245, 41245, 41309, 41181, 41245, 41309, 41053, 41245, 41181, 41245, 41245, 41053, 41117, 41309, 41245, 41309, 41053, 41245, 41245, 41117, 41245, 41245, 41245, 41309, 41181, 41117, 41245, 41309, 41245, 41245, 41245, 41245, 41245, 41117, 41181, 41245, 41309, 41309, 41181, 41245, 41181, 41245, 41117, 41181, 41245, 41181, 41309, 41053, 41309, 41309, 41053, 41245, 41245, 41245, 41245, 41245, 41181, 41181, 41245, 41245, 41245, 41117, 41309, 41245, 41309], 'master key submission': [395641, 421332, 472891, 576200, 783586], 'master key submission, duplicate': [30913, 30849, 30849, 30849, 30849]})
+
+================================================================================
+
+
+
+================================================================================
+RUNNING EVALUATION FOR N=192
+
+contract deployed at: 0x0C54903f2410A3Bdc5BA0f8E10D3A66F41246788
+initializing nodes (192/192)...
+running registration (192/192)...
+
+gas consumption for registration transaction (n=192)
+min: 92393, avg: 92584, max: 107521, total: 17775960
+Counter({92521: 149, 92457: 36, 92393: 6, 107521: 1})
+[107521, 92521, 92457, 92457, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92521, 92457, 92521, 92457, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92393, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92393, 92521, 92393, 92521, 92521, 92457, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92457, 92521, 92521, 92393, 92521, 92457, 92521, 92457, 92521, 92521, 92393, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92457, 92521, 92457, 92521, 92521, 92457, 92521, 92521, 92521, 92457, 92457, 92521, 92457, 92457, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92393, 92457, 92521, 92521]
+
+running setup (192/192)...
+running share distribution (192/192)...
+
+gas consumption for sharing transaction (n=192)
+min: 1140591, avg: 1141783, max: 1143023, total: 219222336
+Counter({1141871: 18, 1141999: 13, 1141615: 12, 1142127: 10, 1141423: 10, 1141743: 9, 1141551: 8, 1141935: 8, 1142383: 8, 1142191: 7, 1141679: 7, 1141359: 7, 1142319: 6, 1141103: 6, 1142255: 6, 1141487: 6, 1141231: 5, 1142063: 5, 1141807: 5, 1141039: 4, 1142447: 4, 1141167: 4, 1142639: 3, 1141295: 3, 1140975: 3, 1142511: 3, 1140655: 2, 1142703: 2, 1140847: 2, 1140719: 1, 1143023: 1, 1142895: 1, 1140591: 1, 1140783: 1, 1142767: 1})
+[1142319, 1141615, 1142191, 1141231, 1142063, 1142063, 1141551, 1140719, 1141999, 1142127, 1141999, 1141871, 1141551, 1141999, 1141103, 1141999, 1141871, 1141039, 1142063, 1142127, 1142639, 1142127, 1141743, 1141679, 1141999, 1143023, 1142127, 1141359, 1141999, 1141295, 1142255, 1141743, 1141615, 1142447, 1141679, 1141231, 1142255, 1141871, 1141615, 1141871, 1142127, 1141743, 1142447, 1141935, 1142383, 1141359, 1142895, 1141103, 1141615, 1141551, 1141231, 1141039, 1140655, 1141551, 1142127, 1142063, 1142191, 1141871, 1141423, 1142319, 1142383, 1141615, 1141743, 1141999, 1141359, 1142127, 1141039, 1142703, 1141487, 1142063, 1140975, 1141423, 1141103, 1141807, 1141743, 1141679, 1141551, 1141423, 1141871, 1141423, 1142319, 1142383, 1141935, 1142447, 1141935, 1142319, 1142191, 1141487, 1142319, 1141423, 1142383, 1142255, 1141103, 1141871, 1142127, 1141679, 1142383, 1141743, 1141871, 1142511, 1141615, 1141999, 1141167, 1141871, 1141615, 1141103, 1141615, 1142191, 1140655, 1141487, 1141551, 1141615, 1142511, 1141295, 1141167, 1142191, 1142191, 1141871, 1141359, 1141423, 1141487, 1141423, 1141679, 1141231, 1142255, 1140591, 1141935, 1141999, 1141039, 1141231, 1142639, 1141167, 1142255, 1141871, 1141615, 1141551, 1141679, 1141423, 1141423, 1141551, 1141487, 1142127, 1140847, 1142383, 1142383, 1141935, 1141359, 1141103, 1141999, 1142127, 1142383, 1142319, 1141615, 1141743, 1141871, 1142511, 1141807, 1141871, 1141871, 1141807, 1141999, 1141615, 1140847, 1141295, 1140975, 1141743, 1141935, 1140783, 1140975, 1141871, 1141167, 1141679, 1142255, 1142191, 1141487, 1141999, 1141871, 1142767, 1141999, 1141807, 1142639, 1141935, 1141743, 1141359, 1142447, 1141871, 1141359, 1141807, 1141423, 1141871, 1141935, 1142703]
+
+processing incomming shares (192/192)...
+
+stopping adversary node which sent invalid shares, 191 nodes remaining
+
+running disputes (191/191)...
+
+gas consumption for dispute transaction (n=191)
+min: 885933, avg: 3049038, max: 5212142, total: 6098075
+Counter({5212142: 1, 885933: 1})
+[5212142, 885933]
+
+processing incomming disputes (1/1)...
+
+stopping adversary node(s) which do not publish their key shares,  97 nodes remaining
+
+running key share submission (97/97)...
+
+gas consumption for key share submission (n=97)
+min: 517514, avg: 517697, max: 517770, total: 50216522
+Counter({517706: 37, 517770: 29, 517642: 20, 517578: 9, 517514: 2})
+[517642, 517770, 517770, 517706, 517706, 517578, 517770, 517706, 517706, 517514, 517578, 517706, 517706, 517642, 517770, 517770, 517770, 517770, 517706, 517706, 517706, 517642, 517770, 517642, 517706, 517706, 517642, 517706, 517642, 517642, 517770, 517770, 517706, 517770, 517770, 517642, 517642, 517642, 517706, 517706, 517706, 517706, 517770, 517770, 517578, 517642, 517642, 517642, 517642, 517706, 517770, 517770, 517578, 517706, 517706, 517642, 517770, 517706, 517514, 517770, 517706, 517770, 517706, 517770, 517706, 517706, 517706, 517770, 517706, 517706, 517706, 517706, 517770, 517770, 517642, 517706, 517770, 517770, 517706, 517770, 517642, 517706, 517578, 517770, 517578, 517770, 517706, 517770, 517706, 517578, 517642, 517706, 517578, 517578, 517642, 517642, 517706]
+
+processing incomming key share submission (97/97)...
+running key share recovery (97/97)...
+
+gas consumption for key share recovery (n=97)
+min: 1188813, avg: 1189711, max: 1190669, total: 115401901
+Counter({1189581: 9, 1189773: 9, 1189517: 8, 1190221: 6, 1189709: 5, 1189901: 5, 1190029: 5, 1189389: 4, 1189645: 4, 1190285: 4, 1189965: 4, 1189069: 4, 1189453: 3, 1190157: 3, 1189197: 3, 1189837: 3, 1189261: 3, 1189325: 2, 1190093: 2, 1189005: 2, 1190413: 2, 1190669: 1, 1188877: 1, 1190349: 1, 1190477: 1, 1188941: 1, 1189133: 1, 1188813: 1})
+[1190221, 1190221, 1189325, 1190669, 1189581, 1189709, 1189773, 1189389, 1189645, 1189453, 1189901, 1189517, 1190285, 1189901, 1190029, 1190029, 1190029, 1189389, 1190157, 1188877, 1189773, 1189709, 1189965, 1190093, 1189517, 1190221, 1190349, 1190029, 1189517, 1189581, 1189709, 1189197, 1189069, 1189197, 1190157, 1189069, 1189709, 1190285, 1189645, 1189005, 1189901, 1189837, 1189581, 1189581, 1190285, 1189901, 1189389, 1190413, 1189069, 1189645, 1189773, 1190029, 1189709, 1189005, 1189581, 1190285, 1189261, 1189965, 1189197, 1189581, 1190477, 1189453, 1188941, 1190221, 1189581, 1189773, 1190221, 1190413, 1189773, 1189773, 1189773, 1189517, 1189837, 1189581, 1190093, 1189453, 1189517, 1189517, 1189837, 1189645, 1189901, 1189133, 1189773, 1189069, 1189389, 1190157, 1189581, 1190221, 1189517, 1189773, 1189517, 1189325, 1189261, 1189965, 1189965, 1188813, 1189261]
+
+loading and executing eventual key share recovery...
+
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517514
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517514
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517450
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517514
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  40989
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41181
+
+gas costs for submission of master key:  991996
+gas costs for submission of master key:  30849
+================================================================================
+
+defaultdict(<class 'list'>, {'registration': [107521, 107521, 107521, 107521, 107521, 107521], 'share distribution': [128640, 172649, 260828, 436993, 789638, 1143023], 'dispute': [405359, 613788, 1031489, 1866615, 3538322, 5212142], 'dispute, duplicate': [69062, 104341, 175480, 317265, 601293, 885933], 'key share submission': [517770, 517770, 517770, 517770, 517770, 517770], 'key share recovery': [51980, 101512, 200410, 398379, 794364, 1190669], 'recovered key share submission': [517706, 517706, 517706, 517578, 517706, 517770, 517770, 517706, 517706, 517642, 517642, 517578, 517706, 517706, 517578, 517770, 517706, 517642, 517770, 517770, 517770, 517706, 517514, 517642, 517578, 517706, 517770, 517706, 517706, 517642, 517706, 517642, 517642, 517770, 517706, 517642, 517770, 517706, 517706, 517770, 517706, 517770, 517706, 517770, 517706, 517770, 517770, 517706, 517770, 517706, 517706, 517642, 517642, 517706, 517770, 517578, 517706, 517642, 517706, 517706, 517578, 517578, 517770, 517642, 517770, 517578, 517706, 517706, 517514, 517706, 517770, 517706, 517770, 517770, 517642, 517770, 517770, 517642, 517642, 517706, 517706, 517706, 517578, 517642, 517706, 517770, 517770, 517642, 517706, 517642, 517706, 517514, 517706, 517706, 517642, 517770, 517578, 517770, 517770, 517386, 517706, 517706, 517706, 517706, 517770, 517706, 517642, 517706, 517706, 517706, 517514, 517706, 517706, 517770, 517706, 517578, 517642, 517770, 517642, 517706, 517706, 517770, 517770, 517706, 517706, 517706, 517770, 517770, 517706, 517642, 517770, 517706, 517770, 517642, 517706, 517770, 517770, 517642, 517770, 517706, 517770, 517706, 517770, 517706, 517514, 517770, 517770, 517770, 517770, 517642, 517770, 517706, 517578, 517578, 517514, 517770, 517706, 517642, 517578, 517642, 517770, 517706, 517770, 517770, 517642, 517450, 517642, 517706, 517770, 517642, 517578, 517706, 517770, 517706, 517770, 517642, 517770, 517770, 517770, 517770, 517770, 517642, 517770, 517642, 517706, 517642, 517706, 517770, 517642, 517706, 517706, 517770, 517578, 517514, 517642, 517578, 517642, 517706, 517706, 517770, 517706, 517770, 517706, 517578, 517706, 517578, 517578, 517642], 'recovered key share submission, duplicate': [41245, 41245, 41181, 41181, 41309, 41309, 41309, 41245, 41245, 41245, 41117, 41053, 41245, 41181, 41117, 41309, 41245, 41245, 41245, 41309, 41309, 41245, 41053, 41117, 41117, 41245, 41309, 41181, 41245, 41181, 41245, 41181, 41053, 41117, 41309, 41245, 41309, 41309, 41245, 41245, 41245, 41309, 41245, 41309, 41245, 41309, 41245, 41181, 41309, 41245, 41245, 41309, 41181, 41245, 41309, 41053, 41245, 41181, 41245, 41245, 41053, 41117, 41309, 41245, 41309, 41053, 41245, 41245, 41117, 41245, 41245, 41245, 41309, 41181, 41117, 41245, 41309, 41245, 41245, 41245, 41245, 41245, 41117, 41181, 41245, 41309, 41309, 41181, 41245, 41181, 41245, 41117, 41181, 41245, 41181, 41309, 41053, 41309, 41309, 41053, 41245, 41245, 41245, 41245, 41245, 41181, 41181, 41245, 41245, 41245, 41117, 41309, 41245, 41309, 41245, 40989, 41181, 41245, 41245, 41309, 41181, 41309, 41309, 41245, 41245, 41245, 41309, 41245, 41245, 41181, 41245, 41245, 41245, 41245, 41245, 41309, 41309, 41117, 41309, 41245, 41245, 41245, 41245, 41309, 41117, 41309, 41309, 41309, 41309, 41181, 41245, 41245, 41117, 41181, 41053, 41309, 41245, 41181, 41181, 41245, 41309, 41245, 41309, 41245, 41245, 41053, 41245, 41245, 41245, 41181, 41117, 41117, 41309, 41245, 41245, 41181, 41309, 41309, 41245, 41309, 41245, 41117, 41245, 41245, 41309, 41245, 41245, 41309, 41181, 41309, 41245, 41309, 41117, 41053, 41245, 41117, 41181, 41245, 41181, 41309, 41245, 41245, 41117, 41181, 41245, 41117, 41181, 41181], 'master key submission': [395641, 421332, 472891, 576200, 783586, 991996], 'master key submission, duplicate': [30913, 30849, 30849, 30849, 30849, 30849]})
+
+================================================================================
+
+
+
+================================================================================
+RUNNING EVALUATION FOR N=256
+
+contract deployed at: 0xF89C3703a619FaFeb6ca0411B3425692FBb771A9
+initializing nodes (256/256)...
+running registration (256/256)...
+
+gas consumption for registration transaction (n=256)
+min: 92329, avg: 92565, max: 107521, total: 23696600
+Counter({92521: 199, 92457: 54, 107521: 1, 92393: 1, 92329: 1})
+[107521, 92457, 92457, 92521, 92457, 92457, 92521, 92521, 92521, 92457, 92521, 92521, 92457, 92457, 92457, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92393, 92521, 92457, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92457, 92521, 92457, 92521, 92521, 92457, 92521, 92521, 92521, 92457, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92457, 92457, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92457, 92521, 92521, 92457, 92521, 92521, 92521, 92457, 92457, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92457, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92521, 92457, 92521, 92521, 92457, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92329, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92457, 92521, 92521, 92521, 92521, 92457, 92521, 92457, 92521, 92521, 92521, 92521, 92521, 92457, 92457, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521, 92521]
+
+running setup (256/256)...
+running share distribution (256/256)...
+
+gas consumption for sharing transaction (n=256)
+min: 1493755, avg: 1495547, max: 1496955, total: 382859904
+Counter({1495419: 20, 1495547: 18, 1495739: 17, 1495675: 15, 1495867: 13, 1495611: 11, 1495803: 11, 1496123: 11, 1496059: 10, 1495355: 10, 1495931: 9, 1495099: 9, 1494843: 8, 1495483: 8, 1495227: 8, 1495163: 7, 1495035: 7, 1494651: 6, 1494907: 6, 1495995: 5, 1496507: 5, 1495291: 4, 1496251: 4, 1494971: 3, 1494459: 3, 1496379: 3, 1496315: 3, 1496443: 3, 1494715: 2, 1494779: 2, 1496187: 2, 1494267: 2, 1494523: 2, 1493883: 1, 1494587: 1, 1496955: 1, 1496891: 1, 1496699: 1, 1493755: 1, 1496763: 1, 1493819: 1, 1496571: 1})
+[1494715, 1494843, 1495995, 1495867, 1493883, 1495995, 1495419, 1494971, 1496059, 1494843, 1495547, 1495483, 1495675, 1495547, 1495547, 1496059, 1496059, 1495291, 1494651, 1495931, 1495355, 1495163, 1495931, 1495355, 1495611, 1494779, 1495419, 1494587, 1495739, 1495803, 1494459, 1495035, 1495099, 1495675, 1495419, 1495739, 1495739, 1495675, 1495739, 1495035, 1495995, 1495163, 1495483, 1495803, 1495227, 1496379, 1495547, 1495867, 1495931, 1496315, 1496507, 1495547, 1495867, 1495419, 1496123, 1495547, 1496059, 1495419, 1496315, 1495611, 1495739, 1495291, 1495163, 1496187, 1495163, 1494651, 1495547, 1495227, 1495547, 1496123, 1494907, 1496379, 1496123, 1495355, 1495675, 1495035, 1495675, 1494907, 1494267, 1495483, 1495163, 1496123, 1494651, 1495547, 1495547, 1495931, 1495611, 1495419, 1495419, 1496443, 1495227, 1495099, 1495355, 1495419, 1495867, 1495931, 1494459, 1495867, 1495099, 1494907, 1495419, 1494843, 1495867, 1496123, 1495867, 1495035, 1495931, 1496955, 1495355, 1496507, 1495803, 1495675, 1496251, 1495483, 1494779, 1494843, 1495547, 1495419, 1496315, 1495099, 1495675, 1495739, 1495227, 1495547, 1496123, 1496123, 1495611, 1495803, 1496507, 1496251, 1495611, 1496891, 1496123, 1495803, 1494651, 1495739, 1495995, 1495419, 1494651, 1495611, 1495803, 1495739, 1495419, 1495419, 1496699, 1495931, 1496379, 1495547, 1495547, 1495355, 1495419, 1495611, 1496059, 1496059, 1495995, 1495419, 1495483, 1494843, 1496059, 1494843, 1495227, 1495163, 1495099, 1493755, 1495419, 1495867, 1495739, 1495547, 1495355, 1496251, 1495611, 1495035, 1495419, 1494651, 1495931, 1496123, 1494907, 1495227, 1496507, 1495483, 1494907, 1494843, 1494459, 1495803, 1495547, 1496187, 1496763, 1495739, 1496443, 1495483, 1496507, 1495675, 1496059, 1494907, 1495867, 1495803, 1495419, 1494971, 1496251, 1495739, 1495035, 1495867, 1495739, 1495739, 1494523, 1495803, 1495611, 1495035, 1494523, 1495611, 1495611, 1496059, 1495099, 1495419, 1495355, 1495547, 1495867, 1496059, 1494267, 1496123, 1495675, 1495803, 1495547, 1495739, 1495675, 1496443, 1495675, 1493819, 1495675, 1495803, 1495675, 1495483, 1495739, 1496123, 1495739, 1495931, 1495163, 1495227, 1495739, 1495099, 1495675, 1495099, 1495355, 1494715, 1494971, 1495099, 1495227, 1494843, 1495867, 1495419, 1495867, 1495291, 1495355, 1495291, 1495675, 1496571]
+
+processing incomming shares (256/256)...
+
+stopping adversary node which sent invalid shares, 255 nodes remaining
+
+running disputes (255/255)...
+
+gas consumption for dispute transaction (n=255)
+min: 1170098, avg: 4028510, max: 6886921, total: 8057019
+Counter({6886921: 1, 1170098: 1})
+[6886921, 1170098]
+
+processing incomming disputes (1/1)...
+
+stopping adversary node(s) which do not publish their key shares,  129 nodes remaining
+
+running key share submission (129/129)...
+
+gas consumption for key share submission (n=129)
+min: 517450, avg: 517696, max: 517770, total: 66782730
+Counter({517706: 62, 517770: 33, 517642: 21, 517578: 7, 517514: 5, 517450: 1})
+[517770, 517706, 517706, 517706, 517578, 517770, 517706, 517770, 517642, 517514, 517706, 517514, 517706, 517706, 517706, 517706, 517770, 517770, 517706, 517770, 517514, 517706, 517706, 517706, 517706, 517706, 517706, 517706, 517642, 517706, 517706, 517770, 517706, 517642, 517642, 517706, 517706, 517770, 517642, 517642, 517706, 517706, 517706, 517770, 517770, 517706, 517578, 517706, 517706, 517642, 517642, 517706, 517770, 517706, 517706, 517770, 517770, 517770, 517706, 517706, 517642, 517706, 517578, 517770, 517642, 517642, 517578, 517642, 517770, 517706, 517706, 517642, 517770, 517706, 517706, 517770, 517770, 517770, 517770, 517514, 517770, 517578, 517578, 517770, 517642, 517706, 517706, 517706, 517642, 517642, 517706, 517642, 517642, 517642, 517706, 517450, 517770, 517770, 517578, 517706, 517770, 517770, 517706, 517770, 517706, 517770, 517706, 517706, 517706, 517706, 517706, 517514, 517706, 517706, 517642, 517706, 517706, 517706, 517706, 517706, 517770, 517706, 517706, 517770, 517706, 517770, 517642, 517706, 517770]
+
+processing incomming key share submission (129/129)...
+running key share recovery (129/129)...
+
+gas consumption for key share recovery (n=129)
+min: 1585310, avg: 1586625, max: 1588254, total: 204674526
+Counter({1586526: 11, 1586910: 9, 1586654: 8, 1586590: 8, 1586782: 7, 1587294: 6, 1586974: 5, 1586270: 5, 1586462: 5, 1587166: 5, 1585950: 4, 1587230: 4, 1586718: 4, 1585822: 4, 1586334: 4, 1585630: 4, 1586078: 3, 1586206: 3, 1587102: 3, 1586846: 3, 1587038: 3, 1586014: 3, 1586142: 3, 1585886: 2, 1588254: 1, 1585502: 1, 1585310: 1, 1588190: 1, 1586398: 1, 1587614: 1, 1587486: 1, 1587550: 1, 1587422: 1, 1585438: 1, 1587998: 1, 1585694: 1, 1587358: 1})
+[1586526, 1587294, 1588254, 1586974, 1585950, 1587230, 1586654, 1586526, 1587294, 1586590, 1586270, 1586654, 1586078, 1586270, 1586718, 1587294, 1585502, 1586462, 1586782, 1585310, 1586206, 1587294, 1586718, 1586590, 1587102, 1585822, 1586846, 1586526, 1586334, 1587038, 1586078, 1586590, 1585630, 1586206, 1587038, 1586974, 1585950, 1588190, 1585886, 1586910, 1586270, 1586014, 1585822, 1586654, 1585630, 1586526, 1586590, 1586910, 1586526, 1587294, 1586462, 1587166, 1585950, 1585886, 1587294, 1585822, 1586398, 1586654, 1586014, 1586462, 1586078, 1587614, 1586718, 1586590, 1586974, 1586206, 1587486, 1587230, 1586846, 1586590, 1587550, 1586526, 1586782, 1586910, 1586526, 1585950, 1586782, 1586782, 1586974, 1586846, 1586462, 1586910, 1587166, 1585630, 1586910, 1587230, 1585630, 1586142, 1586526, 1587422, 1585822, 1585438, 1586910, 1586462, 1586654, 1586654, 1587102, 1586334, 1587038, 1586590, 1586654, 1586654, 1587998, 1586974, 1586142, 1586526, 1586782, 1587102, 1586782, 1587166, 1586334, 1586270, 1586526, 1586334, 1585694, 1587166, 1586526, 1587166, 1586782, 1587230, 1586270, 1586910, 1586014, 1586142, 1586910, 1586910, 1586718, 1587358, 1586590]
+
+loading and executing eventual key share recovery...
+
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517514
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517450
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517514
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517642
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517706
+gas costs for submission of recovered key share:  517578
+gas costs for submission of recovered key share:  517770
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41053
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41117
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41309
+gas costs for submission of recovered key share:  41245
+gas costs for submission of recovered key share:  41181
+gas costs for submission of recovered key share:  41245
+
+gas costs for submission of master key:  1201494
+gas costs for submission of master key:  30913
+================================================================================
+
+defaultdict(<class 'list'>, {'registration': [107521, 107521, 107521, 107521, 107521, 107521, 107521], 'share distribution': [128640, 172649, 260828, 436993, 789638, 1143023, 1496955], 'dispute': [405359, 613788, 1031489, 1866615, 3538322, 5212142, 6886921], 'dispute, duplicate': [69062, 104341, 175480, 317265, 601293, 885933, 1170098], 'key share submission': [517770, 517770, 517770, 517770, 517770, 517770, 517770], 'key share recovery': [51980, 101512, 200410, 398379, 794364, 1190669, 1588254], 'recovered key share submission': [517706, 517706, 517706, 517578, 517706, 517770, 517770, 517706, 517706, 517642, 517642, 517578, 517706, 517706, 517578, 517770, 517706, 517642, 517770, 517770, 517770, 517706, 517514, 517642, 517578, 517706, 517770, 517706, 517706, 517642, 517706, 517642, 517642, 517770, 517706, 517642, 517770, 517706, 517706, 517770, 517706, 517770, 517706, 517770, 517706, 517770, 517770, 517706, 517770, 517706, 517706, 517642, 517642, 517706, 517770, 517578, 517706, 517642, 517706, 517706, 517578, 517578, 517770, 517642, 517770, 517578, 517706, 517706, 517514, 517706, 517770, 517706, 517770, 517770, 517642, 517770, 517770, 517642, 517642, 517706, 517706, 517706, 517578, 517642, 517706, 517770, 517770, 517642, 517706, 517642, 517706, 517514, 517706, 517706, 517642, 517770, 517578, 517770, 517770, 517386, 517706, 517706, 517706, 517706, 517770, 517706, 517642, 517706, 517706, 517706, 517514, 517706, 517706, 517770, 517706, 517578, 517642, 517770, 517642, 517706, 517706, 517770, 517770, 517706, 517706, 517706, 517770, 517770, 517706, 517642, 517770, 517706, 517770, 517642, 517706, 517770, 517770, 517642, 517770, 517706, 517770, 517706, 517770, 517706, 517514, 517770, 517770, 517770, 517770, 517642, 517770, 517706, 517578, 517578, 517514, 517770, 517706, 517642, 517578, 517642, 517770, 517706, 517770, 517770, 517642, 517450, 517642, 517706, 517770, 517642, 517578, 517706, 517770, 517706, 517770, 517642, 517770, 517770, 517770, 517770, 517770, 517642, 517770, 517642, 517706, 517642, 517706, 517770, 517642, 517706, 517706, 517770, 517578, 517514, 517642, 517578, 517642, 517706, 517706, 517770, 517706, 517770, 517706, 517578, 517706, 517578, 517578, 517642, 517706, 517770, 517706, 517706, 517706, 517770, 517642, 517706, 517706, 517770, 517642, 517770, 517642, 517706, 517706, 517706, 517706, 517642, 517706, 517706, 517514, 517770, 517450, 517578, 517578, 517706, 517770, 517770, 517578, 517770, 517642, 517706, 517642, 517770, 517770, 517770, 517770, 517578, 517642, 517514, 517706, 517706, 517706, 517770, 517770, 517770, 517706, 517578, 517642, 517706, 517642, 517706, 517706, 517770, 517706, 517706, 517706, 517770, 517706, 517706, 517706, 517770, 517770, 517706, 517706, 517706, 517642, 517642, 517770, 517578, 517770, 517642, 517642, 517706, 517578, 517770, 517706, 517706, 517770, 517706, 517642, 517706, 517706, 517706, 517642, 517770, 517706, 517770, 517706, 517706, 517578, 517706, 517642, 517770, 517706, 517642, 517642, 517706, 517706, 517642, 517578, 517770, 517706, 517706, 517706, 517642, 517770, 517642, 517706, 517578, 517706, 517706, 517706, 517706, 517706, 517642, 517642, 517770, 517706, 517706, 517642, 517706, 517706, 517706, 517578, 517770], 'recovered key share submission, duplicate': [41245, 41245, 41181, 41181, 41309, 41309, 41309, 41245, 41245, 41245, 41117, 41053, 41245, 41181, 41117, 41309, 41245, 41245, 41245, 41309, 41309, 41245, 41053, 41117, 41117, 41245, 41309, 41181, 41245, 41181, 41245, 41181, 41053, 41117, 41309, 41245, 41309, 41309, 41245, 41245, 41245, 41309, 41245, 41309, 41245, 41309, 41245, 41181, 41309, 41245, 41245, 41309, 41181, 41245, 41309, 41053, 41245, 41181, 41245, 41245, 41053, 41117, 41309, 41245, 41309, 41053, 41245, 41245, 41117, 41245, 41245, 41245, 41309, 41181, 41117, 41245, 41309, 41245, 41245, 41245, 41245, 41245, 41117, 41181, 41245, 41309, 41309, 41181, 41245, 41181, 41245, 41117, 41181, 41245, 41181, 41309, 41053, 41309, 41309, 41053, 41245, 41245, 41245, 41245, 41245, 41181, 41181, 41245, 41245, 41245, 41117, 41309, 41245, 41309, 41245, 40989, 41181, 41245, 41245, 41309, 41181, 41309, 41309, 41245, 41245, 41245, 41309, 41245, 41245, 41181, 41245, 41245, 41245, 41245, 41245, 41309, 41309, 41117, 41309, 41245, 41245, 41245, 41245, 41309, 41117, 41309, 41309, 41309, 41309, 41181, 41245, 41245, 41117, 41181, 41053, 41309, 41245, 41181, 41181, 41245, 41309, 41245, 41309, 41245, 41245, 41053, 41245, 41245, 41245, 41181, 41117, 41117, 41309, 41245, 41245, 41181, 41309, 41309, 41245, 41309, 41245, 41117, 41245, 41245, 41309, 41245, 41245, 41309, 41181, 41309, 41245, 41309, 41117, 41053, 41245, 41117, 41181, 41245, 41181, 41309, 41245, 41245, 41117, 41181, 41245, 41117, 41181, 41181, 41245, 41245, 41309, 41309, 41245, 41309, 41181, 41181, 41309, 41309, 41181, 41245, 41181, 41181, 41245, 41309, 41309, 41053, 41181, 41309, 41053, 41309, 41181, 41117, 41181, 41245, 41309, 41309, 41117, 41245, 41181, 41309, 41245, 41309, 41309, 41309, 41309, 41117, 41245, 41181, 41245, 41309, 41245, 41309, 41309, 41245, 41245, 41117, 41181, 41245, 41181, 41245, 41245, 41309, 41245, 41245, 41181, 41309, 41117, 41245, 41245, 41309, 41181, 41181, 41245, 41309, 41117, 41117, 41245, 41117, 41309, 41245, 41181, 41117, 41181, 41309, 41245, 41245, 41309, 41245, 41181, 41245, 41245, 41245, 41245, 41245, 41309, 41309, 41245, 41181, 41245, 41245, 41181, 41309, 41245, 41117, 41181, 41245, 41245, 41245, 41181, 41245, 41245, 41309, 41245, 41245, 41309, 41181, 41245, 41117, 41181, 41309, 41245, 41181, 41245, 41245, 41181, 41309, 41181, 41245, 41181, 41245, 41309, 41245, 41181, 41245], 'master key submission': [395641, 421332, 472891, 576200, 783586, 991996, 1201494], 'master key submission, duplicate': [30913, 30849, 30849, 30849, 30849, 30849, 30913]})
+
+================================================================================
+
+================================================================================
+================================================================================
+
+[8, 16, 32, 64, 128, 192, 256]
+defaultdict(<class 'list'>, {'registration': [107521, 107521, 107521, 107521, 107521, 107521, 107521], 'share distribution': [128640, 172649, 260828, 436993, 789638, 1143023, 1496955], 'dispute': [405359, 613788, 1031489, 1866615, 3538322, 5212142, 6886921], 'dispute, duplicate': [69062, 104341, 175480, 317265, 601293, 885933, 1170098], 'key share submission': [517770, 517770, 517770, 517770, 517770, 517770, 517770], 'key share recovery': [51980, 101512, 200410, 398379, 794364, 1190669, 1588254], 'recovered key share submission': [517706, 517706, 517706, 517578, 517706, 517770, 517770, 517706, 517706, 517642, 517642, 517578, 517706, 517706, 517578, 517770, 517706, 517642, 517770, 517770, 517770, 517706, 517514, 517642, 517578, 517706, 517770, 517706, 517706, 517642, 517706, 517642, 517642, 517770, 517706, 517642, 517770, 517706, 517706, 517770, 517706, 517770, 517706, 517770, 517706, 517770, 517770, 517706, 517770, 517706, 517706, 517642, 517642, 517706, 517770, 517578, 517706, 517642, 517706, 517706, 517578, 517578, 517770, 517642, 517770, 517578, 517706, 517706, 517514, 517706, 517770, 517706, 517770, 517770, 517642, 517770, 517770, 517642, 517642, 517706, 517706, 517706, 517578, 517642, 517706, 517770, 517770, 517642, 517706, 517642, 517706, 517514, 517706, 517706, 517642, 517770, 517578, 517770, 517770, 517386, 517706, 517706, 517706, 517706, 517770, 517706, 517642, 517706, 517706, 517706, 517514, 517706, 517706, 517770, 517706, 517578, 517642, 517770, 517642, 517706, 517706, 517770, 517770, 517706, 517706, 517706, 517770, 517770, 517706, 517642, 517770, 517706, 517770, 517642, 517706, 517770, 517770, 517642, 517770, 517706, 517770, 517706, 517770, 517706, 517514, 517770, 517770, 517770, 517770, 517642, 517770, 517706, 517578, 517578, 517514, 517770, 517706, 517642, 517578, 517642, 517770, 517706, 517770, 517770, 517642, 517450, 517642, 517706, 517770, 517642, 517578, 517706, 517770, 517706, 517770, 517642, 517770, 517770, 517770, 517770, 517770, 517642, 517770, 517642, 517706, 517642, 517706, 517770, 517642, 517706, 517706, 517770, 517578, 517514, 517642, 517578, 517642, 517706, 517706, 517770, 517706, 517770, 517706, 517578, 517706, 517578, 517578, 517642, 517706, 517770, 517706, 517706, 517706, 517770, 517642, 517706, 517706, 517770, 517642, 517770, 517642, 517706, 517706, 517706, 517706, 517642, 517706, 517706, 517514, 517770, 517450, 517578, 517578, 517706, 517770, 517770, 517578, 517770, 517642, 517706, 517642, 517770, 517770, 517770, 517770, 517578, 517642, 517514, 517706, 517706, 517706, 517770, 517770, 517770, 517706, 517578, 517642, 517706, 517642, 517706, 517706, 517770, 517706, 517706, 517706, 517770, 517706, 517706, 517706, 517770, 517770, 517706, 517706, 517706, 517642, 517642, 517770, 517578, 517770, 517642, 517642, 517706, 517578, 517770, 517706, 517706, 517770, 517706, 517642, 517706, 517706, 517706, 517642, 517770, 517706, 517770, 517706, 517706, 517578, 517706, 517642, 517770, 517706, 517642, 517642, 517706, 517706, 517642, 517578, 517770, 517706, 517706, 517706, 517642, 517770, 517642, 517706, 517578, 517706, 517706, 517706, 517706, 517706, 517642, 517642, 517770, 517706, 517706, 517642, 517706, 517706, 517706, 517578, 517770], 'recovered key share submission, duplicate': [41245, 41245, 41181, 41181, 41309, 41309, 41309, 41245, 41245, 41245, 41117, 41053, 41245, 41181, 41117, 41309, 41245, 41245, 41245, 41309, 41309, 41245, 41053, 41117, 41117, 41245, 41309, 41181, 41245, 41181, 41245, 41181, 41053, 41117, 41309, 41245, 41309, 41309, 41245, 41245, 41245, 41309, 41245, 41309, 41245, 41309, 41245, 41181, 41309, 41245, 41245, 41309, 41181, 41245, 41309, 41053, 41245, 41181, 41245, 41245, 41053, 41117, 41309, 41245, 41309, 41053, 41245, 41245, 41117, 41245, 41245, 41245, 41309, 41181, 41117, 41245, 41309, 41245, 41245, 41245, 41245, 41245, 41117, 41181, 41245, 41309, 41309, 41181, 41245, 41181, 41245, 41117, 41181, 41245, 41181, 41309, 41053, 41309, 41309, 41053, 41245, 41245, 41245, 41245, 41245, 41181, 41181, 41245, 41245, 41245, 41117, 41309, 41245, 41309, 41245, 40989, 41181, 41245, 41245, 41309, 41181, 41309, 41309, 41245, 41245, 41245, 41309, 41245, 41245, 41181, 41245, 41245, 41245, 41245, 41245, 41309, 41309, 41117, 41309, 41245, 41245, 41245, 41245, 41309, 41117, 41309, 41309, 41309, 41309, 41181, 41245, 41245, 41117, 41181, 41053, 41309, 41245, 41181, 41181, 41245, 41309, 41245, 41309, 41245, 41245, 41053, 41245, 41245, 41245, 41181, 41117, 41117, 41309, 41245, 41245, 41181, 41309, 41309, 41245, 41309, 41245, 41117, 41245, 41245, 41309, 41245, 41245, 41309, 41181, 41309, 41245, 41309, 41117, 41053, 41245, 41117, 41181, 41245, 41181, 41309, 41245, 41245, 41117, 41181, 41245, 41117, 41181, 41181, 41245, 41245, 41309, 41309, 41245, 41309, 41181, 41181, 41309, 41309, 41181, 41245, 41181, 41181, 41245, 41309, 41309, 41053, 41181, 41309, 41053, 41309, 41181, 41117, 41181, 41245, 41309, 41309, 41117, 41245, 41181, 41309, 41245, 41309, 41309, 41309, 41309, 41117, 41245, 41181, 41245, 41309, 41245, 41309, 41309, 41245, 41245, 41117, 41181, 41245, 41181, 41245, 41245, 41309, 41245, 41245, 41181, 41309, 41117, 41245, 41245, 41309, 41181, 41181, 41245, 41309, 41117, 41117, 41245, 41117, 41309, 41245, 41181, 41117, 41181, 41309, 41245, 41245, 41309, 41245, 41181, 41245, 41245, 41245, 41245, 41245, 41309, 41309, 41245, 41181, 41245, 41245, 41181, 41309, 41245, 41117, 41181, 41245, 41245, 41245, 41181, 41245, 41245, 41309, 41245, 41245, 41309, 41181, 41245, 41117, 41181, 41309, 41245, 41181, 41245, 41245, 41181, 41309, 41181, 41245, 41181, 41245, 41309, 41245, 41181, 41245], 'master key submission': [395641, 421332, 472891, 576200, 783586, 991996, 1201494], 'master key submission, duplicate': [30913, 30849, 30849, 30849, 30849, 30849, 30913]})
+

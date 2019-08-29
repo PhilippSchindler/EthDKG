@@ -1,3 +1,0 @@
-EVENT_REGISTRATION = 'Registration'
-EVENT_KEY_SHARING = 'KeySharing'
-EVENT_DISPUTE_SUCCESSFUL = 'DisputeSuccessful'
