@@ -4,7 +4,7 @@ This is the implantation of our corresponding research [paper](paper/ethdkg.pdf)
 To familiarize yourself with the implementation run the test cases or execute the protocol by following the instructions below.
 
 **Note**: An earlier version of the protocol was presented at the CIW'19 workshop at the Financial Cryptography and Data Security 2019 conference.
-The [documentation](fc19/), [paper](paper/Distributed%20Key%20Generation%20with%20Ethereum%20Smart%20Contracts.pdf) and [slides](fc19/demo/slides-fc19.pdf)
+The [documentation](fc19/), [paper](fc19/paper/Distributed%20Key%20Generation%20with%20Ethereum%20Smart%20Contracts.pdf) and [slides](fc19/demo/slides-fc19.pdf)
 from the previous version have been moved to the folder `./fc19`.
 
 ## Getting started
