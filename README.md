@@ -101,6 +101,13 @@ The you can for example issue the command `utils.deploy_contract('ETHDKG')` to d
 Or you can use the command `utils.mine_block()` to instruct `ganache` to immediately mine a new block, a feature we use extensively to speed up our automated tests.
 Our utils, automatically handle the connection to the local `ganache` or `geth` client and can also be used to interface with deployed contracts (see e.g. the `utils.get_contract` function).
 
+## Donations
+
+If you like the project or want to support its future development, any donations are of course highly appreciated:
+
+Ethereum: `0x8e20877D39AE8Ca118341b1B62787d8e38515e1f`  
+Bitcoin: `1JLLvvrzCYDKyzfpPQo5mjRdfWj8o8Tnq`
+
 ## Security Notice
 
 This software is provided "as is", without warranty of any kind, express or implied (see [MIT license](LICENSE)).
