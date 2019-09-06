@@ -7,7 +7,18 @@ To familiarize yourself with the implementation run the test cases or execute th
 The [documentation](fc19/), [paper](fc19/paper/Distributed%20Key%20Generation%20with%20Ethereum%20Smart%20Contracts.pdf) and [slides](fc19/demo/slides-fc19.pdf)
 from the previous version have been moved to the folder `./fc19`.
 
-## Getting started
+## News
+
+### Reduction of Gas Costs & Scalability Improvements due to the Implementation of EIP-1108
+
+We just noticed that the next major update for the Ethereum Platform, the [Instanbul hardfork](https://eth.wiki/en/roadmap/istanbul) planed for October 2019, will implement [EIP-1108](https://eips.ethereum.org/EIPS/eip-1108).
+The adoption of this improvement proposal, will considerably reduce gas costs for certain elliptic curve operations, used by EthDKG and many other applications, e.g. Matter labs, Aztec, Rollup and Zether.
+
+For example, the gas cost for the `ECMUL` opcode, we use in our contract for dispute verification is reduced from 40,000 to 6,000 gas. Therefore, we expect a **5 to 6 times reduction in gas costs** for handling disputes, which also enables EthDKG to **scale beyond 512 nodes**.
+As soon as the Istanbul hardfork is implemented and we are able to rerun our measurements,
+we will update our [evaluation results](evaluation/) accordingly.
+
+## Getting Started
 
 We provided a docker container (see instruction below) for running the DKG protocol.
 The docker container can be used to execute the provided test cases as well as the CLI client application.
