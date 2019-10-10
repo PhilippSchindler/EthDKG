@@ -38,12 +38,12 @@ Running the scenario on the Ethereum Testnet Ropsten or the Ethereum Mainnet is 
 However, you are required to setup the Ethereum account for contract deployment and the nodes running the protocol yourself.
 To import the keys into your `geth` instance you can following the template below. Provide private keys without 0x.
 
-`geth --testnet account import <(echo insert-private-of-deployment-account-here)`  
-`geth --testnet account import <(echo insert-private-of-1st-account-here)`  
-`geth --testnet account import <(echo insert-private-of-2nd-account-here)`  
-`geth --testnet account import <(echo insert-private-of-3rd-account-here)`  
-`geth --testnet account import <(echo insert-private-of-4th-account-here)`  
-`geth --testnet account import <(echo insert-private-of-5th-account-here)`
+`geth --testnet account import <(echo insert-private-key-of-deployment-account-here)`  
+`geth --testnet account import <(echo insert-private-key-of-1st-account-here)`  
+`geth --testnet account import <(echo insert-private-key-of-2nd-account-here)`  
+`geth --testnet account import <(echo insert-private-key-of-3rd-account-here)`  
+`geth --testnet account import <(echo insert-private-key-of-4th-account-here)`  
+`geth --testnet account import <(echo insert-private-key-of-5th-account-here)`
 
 Free Ethereum for Testing on Ropsten can be obtained from <https://faucet.ropsten.be>.
 
