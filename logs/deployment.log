@@ -1,0 +1,15 @@
+INFO     compiling contract (ETHDKG.sol)...
+INFO     contract compiled successfully
+DEBUG    Compiler run successful. Artifact(s) can be found in directory /home/alexis/Documents/Stage Disc/ethdkg/contracts/bin.
+
+INFO     deploying contract...
+INFO     contract deployed
+
+INFO     contract address: 0xb363Dff4bc883ed6c5bbbA9e3Bea890776C02880
+INFO     deployed by:      0xa7aF536F96B6BECEc31e71d27d98A20538d3Aa39
+INFO     transaction confirmed
+INFO     transaction hash: 0x2b34b4ffdadb82742da40e0a4579db22e2f2c4f4b22aae12623638b8fe1af4e3
+INFO     block number:     4
+INFO     consumed gas:     2649276
+INFO     status:           OK (1)
+
