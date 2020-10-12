@@ -127,6 +127,18 @@ contract ETHDKG {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //// MAIN CONTRACT FUNCTIONS
 
+    function get_addresses() public view returns(address[] memory){
+        return addresses;
+    }
+
+    function get_public_key(address _address) public view returns(uint256[2] memory){
+        return public_keys[_address];
+    }
+
+    function get_master_public_key() public view returns(uint256[4] memory){
+        return master_public_key;
+    }
+ 
     function register(uint256[2] memory public_key)
     public
     {
