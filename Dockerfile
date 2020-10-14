@@ -1,5 +1,5 @@
 # Docker file for python in ubuntu
-FROM ubuntu:devel
+FROM ubuntu:18.04
 
 WORKDIR /ethdkg
 
