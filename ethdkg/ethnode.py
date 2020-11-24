@@ -361,15 +361,6 @@ class EthNode(Node):
                 db.execute("INSERT INTO commitments (user_id, x, y) \
                     VALUES (?,?,?)",(hex(key),str(point[0]), str(point[1])))
         
-        #save qualified nodes
-        for q in self.qualified_nodes:
-            db.execute("INSERT INTO qualified_nodes (user_id)\
-                VALUES (?)", (hex(q),))
-        
-        #save nodes
-        for node in self.nodes:
-            db.execute("INSERT INTO nodes (user_id)\
-                VALUES (?)",(hex(node),))
         db.commit()
         db.close()
     
