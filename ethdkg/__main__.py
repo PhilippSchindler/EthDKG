@@ -1,11 +1,12 @@
 import argparse
 import os
 import time
+import sqlite3
 
 from . import adversary
 from . import logging
 from . import utils
-from .ethnode import EthNode, point_to_eth, point_G2_to_eth
+from .ethnode import EthNode, point_to_eth, point_G2_to_eth, init_db
 from .utils import STATUS_OK, STATUS_ERROR
 from .node import INVALID_SHARE
 from web3.exceptions import BadFunctionCallOutput
@@ -22,12 +23,18 @@ def main():
     global account
 
     parse_cli_arguments()
-    account = utils.get_account_address(args.account_index)
+    if(args.command != "init-db"):
+        account = utils.get_account_address(args.account_index)
 
     if args.command == "deploy":
         deploy()
     elif args.command == "run":
         run()
+        if args.save:
+            node.save_public_info()
+
+    elif args.command == 'init-db':
+        init_db()
 
 
 def parse_cli_arguments():
@@ -41,6 +48,11 @@ def parse_cli_arguments():
     parser_run.add_argument(
         "contract_address", type=str, help="the address of the DKG smart contract to use"
     )
+
+    parser_run.add_argument(
+        "--save", default=False, help="save all the commitments and other info"
+    )
+
     parser_run.add_argument(
         "--send-invalid-shares",
         type=str,
@@ -54,13 +66,18 @@ def parse_cli_arguments():
         "deploy", help="compiles and deploys the DKG smart contract"
     )
 
-    for subparser in [parser_run, parser_deploy]:
+    parser_init_db = subparsers.add_parser(
+        "init-db", help="initialize the database"
+    )
+
+    for subparser in [parser_init_db, parser_run, parser_deploy]:
         subparser.add_argument(
             "--account-index",
             type=int,
             default=0,
             help="the index of the ethereum account used to issue transactions (by default account 0 is used)",
         )
+    
 
     args = parser.parse_args()
     if args.command == "run":
@@ -103,6 +120,8 @@ def run():
     key_derivation_verification()
     key_derivation_recovery()
     key_derivation_result()
+
+    node.save_private_info()
 
 
 def init():

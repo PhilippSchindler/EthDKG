@@ -1,6 +1,8 @@
 import math
 import time
 from typing import List, Tuple
+import sqlite3
+import os
 
 
 from .node import Node
@@ -31,6 +33,16 @@ def point_G2_from_eth(p) -> PointG2:
     ai, a, bi, b = p
     return (FQ2([a, ai]), FQ2([b, bi]), FQ2((1, 0)))
 
+def init_db():
+    conn = sqlite3.connect('./data/database.db')
+    with open('./ethdkg/schema.sql','r') as schema:
+        conn.executescript(schema.read())
+    conn.close()
+
+def get_db():
+    conn = sqlite3.connect('./data/database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 class EthNode(Node):
     def __init__(self, address, contract, logger=logging.NullLogger):
@@ -339,4 +351,36 @@ class EthNode(Node):
 
         self.logger.info("submitting master public key")
         return self.contract.submit_master_public_key(pk_G2).call(self.address, sync)
+    
+    def save_public_info(self):
+        db = get_db()
+        #save commitments
+        for key, list_commitment in self.commitments.items():
+            for point in list_commitment:
+                point = point_to_eth(point)
+                db.execute("INSERT INTO commitments (user_id, x, y) \
+                    VALUES (?,?,?)",(hex(key),str(point[0]), str(point[1])))
+        
+        #save qualified nodes
+        for q in self.qualified_nodes:
+            db.execute("INSERT INTO qualified_nodes (user_id)\
+                VALUES (?)", (hex(q),))
+        
+        #save nodes
+        for node in self.nodes:
+            db.execute("INSERT INTO nodes (user_id)\
+                VALUES (?)",(hex(node),))
+        db.commit()
+        db.close()
+    
+    def save_private_info(self):
+        db = get_db()
+        db.execute('INSERT INTO gsk (user_id, gsk) \
+            VALUES(?,?)', (self.address, str(self.group_secret_key)))
+        db.commit()
+        db.close()
+
+        
+
+
 
