@@ -126,6 +126,9 @@ contract ETHDKG {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //// MAIN CONTRACT FUNCTIONS
+    function get_share_distribution_hashes(address account) public view returns(bytes32){
+        return share_distribution_hashes[account];
+    }
 
     function get_addresses() public view returns(address[] memory){
         return addresses;
