@@ -6,7 +6,7 @@ import sqlite3
 from . import adversary
 from . import logging
 from . import utils
-from .ethnode import EthNode, point_to_eth, point_G2_to_eth, init_db
+from .ethnode import EthNode, point_to_eth, point_G2_to_eth, get_db, init_db
 from .utils import STATUS_OK, STATUS_ERROR
 from .node import INVALID_SHARE
 from web3.exceptions import BadFunctionCallOutput

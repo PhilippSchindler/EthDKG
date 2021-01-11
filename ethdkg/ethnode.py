@@ -1,9 +1,8 @@
 import math
 import time
 from typing import List, Tuple
-import sqlite3
 import os
-
+import sqlite3
 
 from .node import Node
 from .crypto import PointG1, PointG2, FQ, FQ2, G1, H1, normalize
@@ -11,6 +10,16 @@ from . import utils
 from . import crypto
 from . import logging
 
+def init_db():
+    conn = sqlite3.connect('../DkgEncryption/client/instance/webapp.sqlite')
+    with open('./ethdkg/schema.sql','r') as schema:
+        conn.executescript(schema.read())
+    conn.close()
+
+def get_db():
+    conn = sqlite3.connect('../DkgEncryption/client/instance/webapp.sqlite')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 def point_to_eth(p: PointG1) -> Tuple[int, int]:
     pn = normalize(p)
@@ -32,17 +41,6 @@ def point_G2_to_eth(p: PointG2) -> Tuple[int, int, int, int]:
 def point_G2_from_eth(p) -> PointG2:
     ai, a, bi, b = p
     return (FQ2([a, ai]), FQ2([b, bi]), FQ2((1, 0)))
-
-def init_db():
-    conn = sqlite3.connect('./data/database.db')
-    with open('./ethdkg/schema.sql','r') as schema:
-        conn.executescript(schema.read())
-    conn.close()
-
-def get_db():
-    conn = sqlite3.connect('./data/database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
 
 class EthNode(Node):
     def __init__(self, address, contract, logger=logging.NullLogger):

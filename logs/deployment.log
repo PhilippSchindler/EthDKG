@@ -5,10 +5,10 @@ DEBUG    Compiler run successful. Artifact(s) can be found in directory /home/al
 INFO     deploying contract...
 INFO     contract deployed
 
-INFO     contract address: 0xb339961c41B783B2927cA38B183fF732773f45cC
-INFO     deployed by:      0x00e6e7bCE3a62314450ae79dcfEf27749649362B
+INFO     contract address: 0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab
+INFO     deployed by:      0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1
 INFO     transaction confirmed
-INFO     transaction hash: 0xcaba7ed450468334cb70f1f1bf79f2db31b4d49332eea1c9a6e2198b5763ddee
+INFO     transaction hash: 0xdd2d664e10133ddf0cf60385c7648596094caca4fdc562b4314f75c552572cf6
 INFO     block number:     2
 INFO     consumed gas:     2669111
 INFO     status:           OK (1)
