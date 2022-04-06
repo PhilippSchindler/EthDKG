@@ -5,6 +5,9 @@ import hashlib
 import os
 import subprocess
 import types
+import web3.auto.gethdev
+import web3.gas_strategies.time_based as gas_strategies
+from web3.middleware import geth_poa_middleware
 
 SOLC_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "bin", "solc"))
 
@@ -19,9 +22,22 @@ STATUS_ERROR = 0
 
 send_rpc_mine_block_commands = True
 
+_polling_interval = 0.5  # set to e.g. 15 seconds in production / testing with a high number of nodes
 
-def connect(port=None, dev_mode=None):
-    global w3, _buffered_accounts, send_rpc_mine_block_commands
+_poa = None
+
+
+def set_polling_interval(interval):
+    global _polling_interval
+    _polling_interval = interval
+
+
+def get_polling_interval():
+    return _polling_interval
+
+
+def connect(port=None, dev=None, poa=None):
+    global w3, _buffered_accounts, send_rpc_mine_block_commands, _poa
 
     if port is None:
         ports = [7545, 8545]
@@ -31,17 +47,22 @@ def connect(port=None, dev_mode=None):
     if w3 is None or not w3.isConnected():
         # large request timeout required for performance tests
         for p in ports:
-            w3 = web3.Web3(
-                web3.HTTPProvider(f"http://127.0.0.1:{p}", request_kwargs={"timeout": 60 * 10})
-            )
+            w3 = web3.Web3(web3.HTTPProvider(f"http://127.0.0.1:{p}", request_kwargs={"timeout": 60 * 1000}))
+
+            if (_poa in [None, False]) and (poa or _poa):
+                # print("using poa mode")
+                w3 = web3.auto.gethdev.w3
+                # w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+                _poa = True
+
             if w3.isConnected():
                 if port is None:
                     send_rpc_mine_block_commands = p == 7545
                 break
         _buffered_accounts = None
 
-    if dev_mode:
-        send_rpc_mine_block_commands = False
+    if dev:
+        send_rpc_mine_block_commands = True
 
     assert w3.isConnected(), "Connecting to local Ethereum node failed!"
     return w3
@@ -99,9 +120,7 @@ def deploy_contract(
     tx_hash = contract.constructor().transact({"from": deploying_account_address, "gas": gas})
     mine_block()
     tx_receipt = wait_for_tx_receipt(tx_hash)
-    contract = get_contract(
-        contract_name, tx_receipt["contractAddress"], should_add_simplified_call_interfaces
-    )
+    contract = get_contract(contract_name, tx_receipt["contractAddress"], should_add_simplified_call_interfaces)
     if return_tx_receipt:
         return contract, tx_receipt
     return contract
@@ -122,8 +141,11 @@ def get_contract(contract_name, contract_address, should_add_simplified_call_int
 
 
 def wait_for_tx_receipt(tx_hash):
-    connect()
-    return w3.eth.waitForTransactionReceipt(tx_hash)
+    while True:
+        try:
+            return get_tx_receipt(tx_hash)
+        except web3.exceptions.TransactionNotFound:
+            time.sleep(_polling_interval)
 
 
 def get_tx_receipt(tx_hash):
@@ -133,7 +155,12 @@ def get_tx_receipt(tx_hash):
 
 def wait_for_block(target_block_number):
     while block_number() < target_block_number:
-        time.sleep(0.5)
+        time.sleep(_polling_interval)
+
+
+class FailedTxReceipt:
+    def __init__(self):
+        self.status = STATUS_ERROR
 
 
 class SimplifiedCallInterface:
@@ -153,9 +180,14 @@ class SimplifiedCallInterfaceCall:
     def call_sync(self, caller_account_address=None):
         if caller_account_address is None:
             caller_account_address = get_account_address()
-        tx_hash = self.call_async(caller_account_address)
-        mine_block()
-        return wait_for_tx_receipt(tx_hash)
+        try:
+            tx_hash = self.call_async(caller_account_address)
+            mine_block()
+            return wait_for_tx_receipt(tx_hash)
+        except ValueError as e:
+            if "revert" in e.args[0]["message"]:
+                return FailedTxReceipt()
+            raise e
 
     def call_async(self, caller_account_address=None):
         if caller_account_address is None:
@@ -185,12 +217,15 @@ def add_simplified_call_interfaces(contract):
 def mine_block():
     connect()
     if send_rpc_mine_block_commands:
-        w3.provider.make_request("evm_mine", params="")
+        if "parity" in w3.clientVersion.lower():
+            w3.eth.sendTransaction({"to": w3.eth.accounts[-1], "from": w3.eth.accounts[-1], "value": 1})
+        else:
+            w3.provider.make_request("evm_mine", params="")
 
 
 def mine_blocks(num_blocks):
     if send_rpc_mine_block_commands:
-        for i in range(num_blocks):
+        for _ in range(num_blocks):
             mine_block()
 
 
@@ -204,3 +239,14 @@ def block_number():
     connect()
     return w3.eth.blockNumber
 
+
+def set_gas_price_strategy(strategy_or_price_in_gwei):
+    connect()
+    if isinstance(strategy_or_price_in_gwei, int) or isinstance(strategy_or_price_in_gwei, float):
+
+        def fixed_strategy(web3, params):
+            return web3.toWei(strategy_or_price_in_gwei, "gwei")
+
+        w3.eth.setGasPriceStrategy(fixed_strategy)
+    else:
+        w3.eth.setGasPriceStrategy(strategy_or_price_in_gwei)

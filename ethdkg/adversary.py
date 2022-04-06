@@ -28,9 +28,7 @@ class Adversary_SendInvalidShares(EthNode):
                 self.logger.info(f"MANIPULATING SHARE FOR NODE {self.addresses[target]}")
                 encrypted_shares[target] += 1
             else:
-                self.logger.error(
-                    f"attack target {t} not found / invalid, continuing without this target"
-                )
+                self.logger.error(f"attack target {t} not found / invalid, continuing without this target")
 
         if self.targets:
             self.logger.newline()
@@ -42,5 +40,12 @@ class Adversary_AbortOnKeyShareSubmission(EthNode):
     def submit_key_share(self, recovered_node_idx=None, sync=False):
         self.logger.newline()
         self.logger.critical("not submitting key share")
+        self.logger.critical("aborting protocol")
+        exit(0)
+
+
+class Adversary_AbortAfterRegistration(EthNode):
+    def setup(self):
+        self.logger.newline()
         self.logger.critical("aborting protocol")
         exit(0)

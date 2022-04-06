@@ -130,9 +130,7 @@ def distribute_invalid_commitment(issuer):
     encrypted_shares = list(encrypted_shares.values())
     commitments = [point_to_eth(c) for c in commitments]
     commitments[0] = (1, 3)
-    return issuer.contract.distribute_shares(encrypted_shares, commitments).call_sync(
-        issuer.address
-    )
+    return issuer.contract.distribute_shares(encrypted_shares, commitments).call_sync(issuer.address)
 
 
 def test_share_distribution__invalid_commitment(contract):

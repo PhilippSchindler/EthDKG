@@ -7,8 +7,10 @@ from . import logging
 from . import utils
 from .ethnode import EthNode, point_to_eth, point_G2_to_eth
 from .utils import STATUS_OK, STATUS_ERROR
+from .ethutils import set_polling_interval, get_polling_interval
 from .node import INVALID_SHARE
 from web3.exceptions import BadFunctionCallOutput
+from .state_updates import enable_state_updates, StateUpdate
 
 node: EthNode
 account: str
@@ -16,6 +18,8 @@ contract = None
 logger = None
 args = None
 tx_receipt = None
+
+set_polling_interval(15.0)  # TODO change to e.g. 15.0 seconds for large scale testing on a single server
 
 
 def main():
@@ -38,9 +42,7 @@ def parse_cli_arguments():
     subparsers.required = True
 
     parser_run = subparsers.add_parser("run", help="participate in the run of the DKG protocol")
-    parser_run.add_argument(
-        "contract_address", type=str, help="the address of the DKG smart contract to use"
-    )
+    parser_run.add_argument("contract_address", type=str, help="the address of the DKG smart contract to use")
     parser_run.add_argument(
         "--send-invalid-shares",
         type=str,
@@ -48,11 +50,11 @@ def parse_cli_arguments():
         default=[],
         nargs="+",
     )
+    parser_run.add_argument("--abort-after-registration", default=False, action="store_true")
     parser_run.add_argument("--abort-on-key-share-submission", default=False, action="store_true")
+    parser_run.add_argument("--interactive", default=False, action="store_true")
 
-    parser_deploy = subparsers.add_parser(
-        "deploy", help="compiles and deploys the DKG smart contract"
-    )
+    parser_deploy = subparsers.add_parser("deploy", help="compiles and deploys the DKG smart contract")
 
     for subparser in [parser_run, parser_deploy]:
         subparser.add_argument(
@@ -70,6 +72,9 @@ def parse_cli_arguments():
             except ValueError:
                 # this is okay, receiver is specified via address instead
                 pass
+
+        if args.interactive:
+            enable_state_updates()
 
 
 def deploy():
@@ -92,7 +97,8 @@ def deploy():
 
 def run():
     global logger
-    logger = logging.create_logger(f"node.{args.account_index}.log")
+    logger = logging.create_logger(f"node.{args.account_index:04}.log")
+    StateUpdate.set_logger(logger)
     init()
     registration()
     share_distribution()
@@ -109,8 +115,10 @@ def init():
     global node, contract
     print()
     logger.info("started ETHDKG protocol client")
+    logger.info(f"process id: {os.getpid()}")
     logger.info(f"account index:   {args.account_index}")
     logger.info(f"account address: {account}")
+    StateUpdate.STARTED()
     logger.newline(3)
 
     logger.info("INITIALIZATION PHASE")
@@ -131,6 +139,8 @@ def init():
     if args.send_invalid_shares:
         node_cls = adversary.Adversary_SendInvalidShares
         kwargs["targets"] = args.send_invalid_shares
+    elif args.abort_after_registration:
+        node_cls = adversary.Adversary_AbortAfterRegistration
     elif args.abort_on_key_share_submission:
         node_cls = adversary.Adversary_AbortOnKeyShareSubmission
 
@@ -138,6 +148,7 @@ def init():
 
     logger.newline()
     logger.info("initialization completed")
+    StateUpdate.INITIALIZED()
 
     if type(node) != EthNode:
         logger.newline()
@@ -166,14 +177,16 @@ def registration():
     logger.newline()
 
     logger.info("sending registration transaction")
-    log_tx(node.register())
+    log_tx(node.register(), StateUpdate.WAITING_FOR_REGISTRATION_CONFIRMATION)
 
     logger.info("waiting for end of registration phase and consensus stabilization")
     wait_until(node.T_REGISTRATION_END + node.DELTA_CONFIRM)
     logger.newline()
     logger.info("registration phase completed")
+    StateUpdate.REGISTRATION_PHASE_COMPLETED()
     logger.newline()
 
+    logger.info("loading registrations")
     node.setup()
     logger.info(f"registered nodes (n): {node.n}")
     logger.info(f"threshold (t):        {node.t}")
@@ -185,6 +198,8 @@ def registration():
             s = "*"
         logger.info(f"    {addr}{s}  public key: {pk}")
     logger.newline(3)
+
+    StateUpdate.SETUP_COMPLETED()
 
 
 def share_distribution():
@@ -205,13 +220,14 @@ def share_distribution():
     logger.newline()
 
     logger.info("sending share distribution transaction")
-    log_tx(tx_hash)
+    log_tx(tx_hash, StateUpdate.WAITING_FOR_SHARING_CONFIRMATION)
     logger.newline()
 
     logger.info("waiting for end of share distribution phase and consensus stabilization")
     wait_until(node.T_SHARE_DISTRIBUTION_END + node.DELTA_CONFIRM)
     logger.newline()
     logger.info("share distribution phase completed")
+    StateUpdate.SHARING_PHASE_COMPLETED()
     logger.newline()
 
 
@@ -243,6 +259,7 @@ def share_verification():
         logger.critical("insufficient valid shares received")
         exit(1)
 
+    StateUpdate.SHARES_LOADED()
     logger.newline(3)
 
 
@@ -257,6 +274,8 @@ def dispute_submission():
     disputes = node.compute_disputes()
     if not disputes:
         logger.info("no disputes to submit")
+        StateUpdate.NO_DISPUTES_TO_SUBMIT()
+        StateUpdate.DISPUTES_COMPLETED()
         return
     if current_block_number > node.T_DISPUTE_END:
         logger.critical("DISPUTE FAILED (phase has already ended)")
@@ -274,9 +293,10 @@ def dispute_submission():
     for issuer, tx_hash in txs.items():
         logger.newline()
         print(f"dispute against node {node.addresses[issuer]}")
-        log_tx(tx_hash)
+        log_tx(tx_hash, StateUpdate.WAITING_FOR_DISPUTE_CONFIRMATION)
 
     logger.info("all disputes submitted")
+    StateUpdate.DISPUTES_COMPLETED()
 
 
 def dispute_verification():
@@ -285,10 +305,12 @@ def dispute_verification():
     wait_until(node.T_DISPUTE_END + node.DELTA_CONFIRM)
     logger.newline()
     logger.info("dispute phase completed")
+    StateUpdate.DISPUTE_PHASE_COMPLETED()
     logger.newline()
     logger.info("loading received disputes")
 
     node.load_disputes()
+    StateUpdate.DISPUTES_LOADED()
     logger.newline(3)
 
 
@@ -328,7 +350,7 @@ def key_derivation_submission():
     tx = node.submit_key_share()
     logger.newline()
     logger.info("submitting transaction")
-    log_tx(tx)
+    log_tx(tx, StateUpdate.WAITING_FOR_KEY_SHARE_CONFIRMATION)
 
 
 def key_derivation_verification():
@@ -337,22 +359,22 @@ def key_derivation_verification():
     wait_until(node.T_KEY_SHARE_SUBMISSION_END + node.DELTA_CONFIRM)
     logger.newline()
     logger.info("key submission completed")
+    StateUpdate.KEY_SHARING_PHASE_COMPLETED()
     logger.newline()
     logger.info("loading key shares")
     node.load_key_shares()
+    StateUpdate.KEY_SHARES_LOADED()
 
 
 def key_derivation_recovery():
     if len(node.key_shares) == len(node.qualified_nodes):
         logger.info("no need to recover any key shares")
+        StateUpdate.NO_KEY_SHARE_RECOVERY()
         return
     logger.newline()
-    logger.info(
-        f"initiating recovery process for "
-        f"{len(node.qualified_nodes) - len(node.key_shares)} node(s)"
-    )
+    logger.info(f"initiating recovery process for " f"{len(node.qualified_nodes) - len(node.key_shares)} node(s)")
     logger.newline()
-    log_tx(node.recover_key_shares())
+    log_tx(node.recover_key_shares(), StateUpdate.WAITING_FOR_KEY_SHARE_RECOVERY_CONFIRMATION)
     logger.info("waiting for shares to recover all missing key shares")
     logger.newline()
     node.load_recovered_key_shares()
@@ -368,14 +390,16 @@ def key_derivation_recovery():
     for issuer, tx_hash in txs.items():
         logger.newline()
         logger.info(f"recovered key share for node {node.addresses[issuer]}")
-        log_tx(tx_hash)
+        log_tx(tx_hash, StateUpdate.WAITING_FOR_SUBMISSION_OF_RECOVERED_KEY_SHARE_CONFIRMATION)
 
     logger.info("all recovered key shares submitted")
+    StateUpdate.SUBMISSION_OF_RECOVERED_KEY_SHARES_COMPLETED()
 
 
 def key_derivation_result():
     logger.info("deriving master public key")
-    log_tx(node.submit_master_public_key(), may_fail=True)
+
+    log_tx(node.submit_master_public_key(), StateUpdate.WAITING_FOR_MASTER_KEY_SUBMISSION_CONFIRMATION, may_fail=True)
     node.derive_group_keys()
 
     logger.newline(3)
@@ -389,19 +413,21 @@ def key_derivation_result():
         f"correctness proof for group public key: "
         + str((point_to_eth(node.group_public_key_in_G1), node.group_public_key_correctness_proof))
     )
+    StateUpdate.DKG_COMPLETED()
     logger.newline()
 
 
-def log_tx(tx_hash, may_fail=False):
+def log_tx(tx_hash, state_update, may_fail=False):
     logger.info(f"transaction hash: {tx_hash.hex()}")
     logger.newline()
     logger.info("waiting for confirmation")
+    state_update()
     logger.newline()
     tx_receipt = utils.wait_for_tx_receipt(tx_hash)
-    log_tx_receipt(tx_receipt, may_fail=False)
+    log_tx_receipt(tx_receipt, StateUpdate(state_update + 1), may_fail=False)
 
 
-def log_tx_receipt(receipt, may_fail=False):
+def log_tx_receipt(receipt, state_update=None, may_fail=False):
     global tx_receipt
     tx_receipt = receipt
     logger.info("transaction confirmed")
@@ -411,6 +437,8 @@ def log_tx_receipt(receipt, may_fail=False):
     logger.info(f"block number:     {tx_receipt.blockNumber}")
     logger.info(f"consumed gas:     {tx_receipt.gasUsed}")
     logger.info(f"status:           {status_to_name[tx_receipt.status]} ({tx_receipt.status})")
+    if state_update is not None:
+        state_update()
     logger.newline()
 
     if tx_receipt.status != STATUS_OK and not may_fail:
@@ -428,7 +456,7 @@ def wait_until(block_number):
                 return
             logger.info(f"current block: {current}; {remaining} blocks remaining")
             prev = current
-        time.sleep(1.0)
+        time.sleep(get_polling_interval())
 
 
 main()

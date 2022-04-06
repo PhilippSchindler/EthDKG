@@ -8,6 +8,7 @@ from .crypto import PointG1, PointG2, FQ, FQ2, G1, H1, normalize
 from . import utils
 from . import crypto
 from . import logging
+from .state_updates import StateUpdate
 
 
 def point_to_eth(p: PointG1) -> Tuple[int, int]:
@@ -42,9 +43,7 @@ class EthNode(Node):
         self.T_REGISTRATION_END = contract.caller.T_REGISTRATION_END()
         self.T_SHARE_DISTRIBUTION_END = contract.caller.T_SHARE_DISTRIBUTION_END()
         self.T_DISPUTE_END = contract.caller.T_DISPUTE_END()
-        self.T_KEY_SHARE_SUBMISSION_END = (
-            self.T_DISPUTE_END + self.DELTA_CONFIRM + self.DELTA_INCLUDE
-        )
+        self.T_KEY_SHARE_SUBMISSION_END = self.T_DISPUTE_END + self.DELTA_CONFIRM + self.DELTA_INCLUDE
         self.logger = logger
 
     @property
@@ -67,10 +66,7 @@ class EthNode(Node):
         addresses = [self.contract.caller.addresses(i) for i in range(self.n)]
         public_keys = {
             int(addr, 16): point_from_eth(
-                (
-                    self.contract.caller.public_keys(addr, 0),
-                    self.contract.caller.public_keys(addr, 1),
-                )
+                (self.contract.caller.public_keys(addr, 0), self.contract.caller.public_keys(addr, 1))
             )
             for addr in addresses
         }
@@ -88,9 +84,7 @@ class EthNode(Node):
         self.logger.info(f"encrypted shares: {encrypted_shares}")
         self.logger.info(f"commitments:      {commitments}")
         commitments = [point_to_eth(c) for c in commitments]
-        return self.contract.distribute_shares(encrypted_shares, commitments).call(
-            self.address, sync
-        )
+        return self.contract.distribute_shares(encrypted_shares, commitments).call(self.address, sync)
 
     def load_shares(self):
         utils.wait_for_block(self.T_SHARE_DISTRIBUTION_END + self.DELTA_CONFIRM)
@@ -152,9 +146,7 @@ class EthNode(Node):
             disputer_idx = int(e.args.disputer, 16)
             shared_key = point_from_eth(e.args.shared_key)
             shared_key_correctness_proof = e.args.shared_key_correctness_proof
-            if super().load_dispute(
-                issuer_idx, disputer_idx, shared_key, shared_key_correctness_proof
-            ):
+            if super().load_dispute(issuer_idx, disputer_idx, shared_key, shared_key_correctness_proof):
                 self.logger.info(
                     f"dispute against {e.args.issuer} successfully verified; submitted by {e.args.disputer}"
                 )
@@ -171,9 +163,7 @@ class EthNode(Node):
         """
         if recovered_node_idx is None:
             issuer = self.address
-            key_share_G1, key_share_G1_correctness_proof, key_share_G2 = (
-                super().compute_key_share()
-            )
+            key_share_G1, key_share_G1_correctness_proof, key_share_G2 = super().compute_key_share()
         else:
             issuer = self.addresses[recovered_node_idx]
             key_share_G1, key_share_G2 = self.key_shares[recovered_node_idx]
@@ -192,32 +182,23 @@ class EthNode(Node):
         self.logger.info(f"    keyshare (G2):    {key_share_G2}")
         self.logger.info(f"    correctess proof: {key_share_G1_correctness_proof}")
 
-        return self.contract.submit_key_share(
-            issuer, key_share_G1, key_share_G1_correctness_proof, key_share_G2
-        ).call(self.address, sync)
+        return self.contract.submit_key_share(issuer, key_share_G1, key_share_G1_correctness_proof, key_share_G2).call(
+            self.address, sync
+        )
 
     def load_key_shares(self):
         utils.wait_for_block(self.T_KEY_SHARE_SUBMISSION_END + self.DELTA_CONFIRM)
         # TODO: limit lookup to time of contract creation (or beginning of share distribution phase)
-        events = self.contract.events.KeyShareSubmission.createFilter(
-            fromBlock=0
-        ).get_all_entries()
+        events = self.contract.events.KeyShareSubmission.createFilter(fromBlock=0).get_all_entries()
 
         if len(events) > self.t:
-            logfunc = (
-                self.logger.info
-                if len(events) == len(self.qualified_nodes)
-                else self.logger.warning
-            )
+            logfunc = self.logger.info if len(events) == len(self.qualified_nodes) else self.logger.warning
             logfunc(
-                f"{len(events)} key share submission events detected; "
-                f"{len(self.qualified_nodes)} events expected"
+                f"{len(events)} key share submission events detected; " f"{len(self.qualified_nodes)} events expected"
             )
             self.logger.newline()
         else:
-            self.logger.critical(
-                f"only {len(events)} event(s) received; at least t + 1 ({t + 1}) events required"
-            )
+            self.logger.critical(f"only {len(events)} event(s) received; at least t + 1 ({self.t + 1}) events required")
             exit(1)
 
         for e in events:
@@ -233,8 +214,7 @@ class EthNode(Node):
                 point_G2_from_eth(e.args.key_share_G2),
             ):
                 self.logger.critical(
-                    "failed to load key share, "
-                    "python and smart contract implementation are inconsistent"
+                    "failed to load key share, " "python and smart contract implementation are inconsistent"
                 )
                 exit(1)
 
@@ -255,9 +235,9 @@ class EthNode(Node):
                 shared_key_correctness_proofs.append(proof)
 
         if recovered_nodes:
-            return self.contract.recover_key_shares(
-                recovered_nodes, shared_keys, shared_key_correctness_proofs
-            ).call(self.address, sync)
+            return self.contract.recover_key_shares(recovered_nodes, shared_keys, shared_key_correctness_proofs).call(
+                self.address, sync
+            )
 
     def load_recovered_key_shares(self, poll_timeout=1.0):
         eventFilter = None
@@ -276,9 +256,7 @@ class EthNode(Node):
                 shared_keys = [point_from_eth(p) for p in e.args.shared_keys]
                 shared_key_correctness_proofs = e.args.shared_key_correctness_proofs
 
-                self.logger.info(
-                    f"recovery event received from node {self.addresses[recoverer_idx]}"
-                )
+                self.logger.info(f"recovery event received from node {self.addresses[recoverer_idx]}")
                 self.logger.info(f"    recovered nodes:    {e.args.recovered_nodes}")
                 self.logger.info(f"    shared keys:        {e.args.shared_keys}")
                 self.logger.info(f"    correctness proofs: {e.args.shared_key_correctness_proofs}")
@@ -295,29 +273,25 @@ class EthNode(Node):
                     )
                     if success:
                         self.logger.info(
-                            f"share for recovery of node {self.addresses[recovered_node]}"
-                            " successfully verified"
+                            f"share for recovery of node {self.addresses[recovered_node]}" " successfully verified"
                         )
                         if recovered_node in self.key_shares:
                             self.logger.info("node already recovered")
                         else:
                             if super().recover_key_share(recovered_node):
-                                self.logger.info(
-                                    f"key share recovered: {self.key_shares[recovered_node]}"
-                                )
+                                self.logger.info(f"key share recovered: {self.key_shares[recovered_node]}")
                             else:
                                 x = len(self.decrypted_shares_for_recovery[recovered_node])
                                 self.logger.info(
-                                    f"recovery not yet possible; "
-                                    f"{self.t + 1 - x} additional shares required"
+                                    f"recovery not yet possible; " f"{self.t + 1 - x} additional shares required"
                                 )
                     else:
                         self.logger.error(
-                            "invalid share for recovery of node "
-                            f"{self.addresses[recovered_node]} received"
+                            "invalid share for recovery of node " f"{self.addresses[recovered_node]} received"
                         )
                     self.logger.newline()
         self.logger.info("all key shares recovered successfully")
+        StateUpdate.KEY_SHARE_RECOVERIES_LOADED()
         self.logger.newline()
 
     def submit_recovered_key_shares(self, sync=False):
@@ -333,6 +307,8 @@ class EthNode(Node):
         # public key are possible.
         pk_G2 = super().derive_master_public_key()
         pk_G2 = point_G2_to_eth(pk_G2)
+
+        StateUpdate.MASTER_KEY_DERIVED()
 
         self.logger.info(f"master public key: {pk_G2}")
         self.logger.newline()

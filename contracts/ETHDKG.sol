@@ -1,9 +1,9 @@
-pragma solidity ^0.5.8;
+pragma solidity ^0.6.1;
 /*
     Author: Philipp Schindler
     Source code and documentation available on Github: https://github.com/PhilippSchindler/ethdkg
 
-    Copyright 2019 Philipp Schindler
+    Copyright 2020 Philipp Schindler
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -107,7 +107,7 @@ contract ETHDKG {
 
     // number of blocks to ensure that a transaction with proper fees gets included in a block
     // needs to be appropriately set for the production system
-    uint256 public constant DELTA_INCLUDE = 20;
+    uint256 public constant DELTA_INCLUDE = 300;
 
     // number of confirmations to wait to ensure that a transaction cannot be reverted
     // needs to be appropriately set for the production system
@@ -485,7 +485,7 @@ contract ETHDKG {
             // 0        number of ether to transfer
             // 384       size of call parameters, i.e. 12*256 bits == 384 bytes
             // 32        size of result (one 32 byte boolean!)
-            success := call(sub(gas, 2000), 0x08, 0, input, 384, result, 32)
+            success := call(sub(gas(), 2000), 0x08, 0, input, 384, result, 32)
         }
         require(success, "elliptic curve pairing failed");
         return result[0] == 1;

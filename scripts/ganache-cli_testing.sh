@@ -2,9 +2,10 @@
 
 ganache-cli 			 		\
 	--blockTime 1000000  		\
-	--gasLimit 8000000			\
+	--gasLimit 10000000			\
 	--deterministic				\
-	--accounts 20 				\
+	--accounts 30 				\
 	--port 7545		  	 		\
-	--keepAliveTimeout 100000
+	--keepAliveTimeout 100000   #\
+#    --hardfork istanbul
 

@@ -60,14 +60,12 @@ def init(n=5):
     # last node sends invalid shares
     nodes.append(
         Adversary_SendInvalidShares(
-            utils.get_account_address(n - 1),
-            contract,
-            targets=[node.address for node in nodes[:2]],
+            utils.get_account_address(n - 1), contract, targets=[node.address for node in nodes[:3]]
         )
     )
     print_replace(f"initializing nodes ({n}/{n})...")
 
-    for node in nodes[2:]:
+    for node in nodes[3:]:
         node._disable_share_verification = True
 
     for node in nodes:
@@ -106,9 +104,7 @@ def setup():
 
     addresses = [contract.caller.addresses(i) for i in range(n)]
     public_keys = {
-        int(addr, 16): point_from_eth(
-            (contract.caller.public_keys(addr, 0), contract.caller.public_keys(addr, 1))
-        )
+        int(addr, 16): point_from_eth((contract.caller.public_keys(addr, 0), contract.caller.public_keys(addr, 1)))
         for addr in addresses
     }
     addresses = {int(addr, 16): addr for addr in addresses}
@@ -122,21 +118,16 @@ def setup():
         print_replace(f"running setup ({i+1}/{len(nodes)})...")
 
 
-def share_distribution(batch_size=4):
+def share_distribution():
     global nodes
 
     txs = []
     print(f"running share distribution (0/{len(nodes)})...")
-    for i in range(0, len(nodes), batch_size):
-        batch = nodes[i : i + batch_size]
-        batch_txs = [node.distribute_shares(sync=False) for node in batch]
-        utils.mine_block()
-        batch_tx_receipts = [utils.get_tx_receipt(tx) for tx in batch_txs]
-        txs += batch_tx_receipts
-        print_replace(f"running share distribution ({i + len(batch)}/{len(nodes)})...")
-
-    for tx_receipt in txs:
+    for i, node in enumerate(nodes):
+        tx_receipt = node.distribute_shares(sync=True)
         assert tx_receipt.status == STATUS_OK
+        txs.append(tx_receipt)
+        print_replace(f"running share distribution ({i + 1}/{len(nodes)})...")
 
     print_stats("share distribution", f"gas consumption for sharing transaction", txs)
     utils.mine_until_share_distribution_confirmed(contract)
@@ -162,17 +153,14 @@ def share_distribution(batch_size=4):
 def disputes(batch_size=1):
     txs = []
     print(f"running disputes (0/{len(nodes)})...")
-    for i in range(0, len(nodes), batch_size):
-        batch = nodes[i : i + batch_size]
-        batch_txs = []
-        for node in batch:
-            batch_txs += list(node.submit_disputes(sync=False).values())
-        utils.mine_block()
-        batch_tx_receipts = [utils.get_tx_receipt(tx) for tx in batch_txs]
-        txs += batch_tx_receipts
-        print_replace(f"running disputes ({i + len(batch)}/{len(nodes)})...")
+    for i, node in enumerate(nodes):
+        tx_receipts = list(node.submit_disputes(sync=True).values())
+        for tx_receipt in tx_receipts:
+            assert tx_receipt.status == STATUS_OK
+        txs += tx_receipts
+        print_replace(f"running disputes ({i + 1}/{len(nodes)})...")
 
-    print_stats("dispute", f"gas consumption for dispute transaction", txs, True)
+    print_stats("dispute", f"gas consumption for dispute transaction", txs)
     utils.mine_until_disputes_confirmed(contract)
 
     for tx_receipt in txs:
@@ -190,38 +178,25 @@ def disputes(batch_size=1):
         print_replace(f"processing incomming disputes ({i + 1}/{len(events)})...")
 
 
-def key_derivation(batch_size=5, stop_max=False):
+def key_derivation(stop_max=False):
     global nodes
 
     if stop_max:
         nodes = nodes[: num_nodes // 2 + 1]
     else:
         nodes = nodes[:-1]
-
-    print(
-        f"\nstopping adversary node(s) which do not publish their key shares,  "
-        f"{len(nodes)} nodes remaining\n"
-    )
+    print(f"\nstopping adversary node(s) which do not publish their key shares, {len(nodes)} nodes remaining\n")
 
     txs = []
     print(f"running key share submission (0/{len(nodes)})...")
-    for i in range(0, len(nodes), batch_size):
-        batch = nodes[i : i + batch_size]
-        for node in batch:
-            node.compute_qualified_nodes()
-        batch_txs = [node.submit_key_share(sync=False) for node in batch]
-        time.sleep(1)
-        utils.mine_block()
-        batch_tx_receipts = [utils.get_tx_receipt(tx) for tx in batch_txs]
-        assert None not in batch_tx_receipts
-        txs += batch_tx_receipts
-        print_replace(f"running key share submission ({i + len(batch)}/{len(nodes)})...")
-
-    for tx_receipt in txs:
+    for i, node in enumerate(nodes):
+        node.compute_qualified_nodes()
+        tx_receipt = node.submit_key_share(sync=True)
         assert tx_receipt.status == STATUS_OK
+        txs.append(tx_receipt)
+        print_replace(f"running key share submission ({i + 1}/{len(nodes)})...")
 
     print_stats("key share submission", f"gas consumption for key share submission", txs)
-
     utils.mine_until_key_share_submission_confirmed(contract)
 
     events = contract.events.KeyShareSubmission.createFilter(fromBlock=0).get_all_entries()
@@ -237,21 +212,14 @@ def key_derivation(batch_size=5, stop_max=False):
         print_replace(f"processing incomming key share submission ({i + 1}/{len(events)})...")
 
 
-def key_derivation_recovery(batch_size=4):
+def key_derivation_recovery():
     txs = []
     print(f"running key share recovery (0/{len(nodes)})...")
-    for i in range(0, len(nodes), batch_size):
-        batch = nodes[i : i + batch_size]
-        batch_txs = [node.recover_key_shares(sync=False) for node in batch]
-        time.sleep(1)
-        utils.mine_block()
-        batch_tx_receipts = [utils.get_tx_receipt(tx) for tx in batch_txs]
-        assert None not in batch_tx_receipts
-        txs += batch_tx_receipts
-        print_replace(f"running key share recovery ({i + len(batch)}/{len(nodes)})...")
-
-    for tx_receipt in txs:
+    for i, node in enumerate(nodes):
+        tx_receipt = node.recover_key_shares(sync=True)
         assert tx_receipt.status == STATUS_OK
+        txs.append(tx_receipt)
+        print_replace(f"running key share recovery ({i + 1}/{len(nodes)})...")
 
     print_stats("key share recovery", f"gas consumption for key share recovery", txs)
 
@@ -300,7 +268,7 @@ def run(n=5, stop_max=False):
     print()
 
 
-def run_all(N=[8, 16, 32, 64, 128, 192, 256], stop_max=False):
+def run_all(N=[8, 16, 32, 64, 128, 192, 256, 384, 512], stop_max=True):
 
     for n in N:
         run(n, stop_max)

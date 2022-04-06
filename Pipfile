@@ -8,6 +8,7 @@ py-ecc = "*"
 sympy = "*"
 web3 = "*"
 py-solc = "*"
+matplotlib = "*"
 
 [dev-packages]
 mypy = "*"
@@ -19,7 +20,7 @@ numpy = "*"
 matplotlib = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
 
 [pipenv]
 allow_prereleases = true
