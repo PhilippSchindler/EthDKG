@@ -1,6 +1,6 @@
 # EthDKG: An Ethereum-based Distributed Key Generation Protocol
 
-This is the implementation of our corresponding research [paper](paper/ethdkg.pdf).
+This is the implementation of our corresponding research [paper](https://eprint.iacr.org/2019/985).
 To familiarize yourself with the implementation run the test cases or execute the protocol by following the instructions below.
 
 **Note**: An earlier version of the protocol was presented at the CIW'19 workshop at the Financial Cryptography and Data Security 2019 conference.
